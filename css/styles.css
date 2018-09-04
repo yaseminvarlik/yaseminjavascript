@@ -1,0 +1,78 @@
+@font-face {
+    font-family: fontBody;
+    src: url(./fonts/type_writer.ttf);
+}
+
+body {
+	background-color: #484848;
+}
+h1 {
+	font-family: "fontBody";
+	font-size:0.7vw;
+	margin: 2%;
+	color: #FF0066;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.website_link:hover {
+	color: #00CCFF;
+}
+
+.school_website:hover {
+	text-decoration: underline;
+}
+p {
+	font-family: "fontBody";
+	font-size: 0.7vw;
+}
+.description {
+	width: 30vw;
+	line-height: 1.6vh;
+	color: white;
+}
+
+.intro {
+	color: #86DE5A;
+}
+
+.description, .intro, .projects {
+	padding-left: 2%;
+}
+
+
+.projects{
+	color: #FFFF66;
+	position: fixed;
+	top: 2%;
+	left: 55%;
+
+}
+
+.project_names {
+	font-family: "fontBody";
+	font-size: 0.7vw;
+	color: #00CCFF;
+
+}
+
+.project_one{
+	color: #9966FF;
+	display: block;
+	width: 60vw;
+	display: inline;
+
+}
+
+.first{
+	color: #9966FF;
+}
+
+.first:hover {
+	color: white;
+}
+
+
