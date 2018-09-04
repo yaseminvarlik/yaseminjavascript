@@ -29,17 +29,19 @@ p {
 	font-family: "fontBody";
 	font-size: 0.7vw;
 }
-.description {
+#description {
 	width: 30vw;
 	line-height: 1.6vh;
 	color: white;
+	font-family: "fontBody";
+	font-size: 0.7vw;
 }
 
 .intro {
 	color: #86DE5A;
 }
 
-.description, .intro, .projects {
+#description, .intro, .projects {
 	padding-left: 2%;
 }
 
