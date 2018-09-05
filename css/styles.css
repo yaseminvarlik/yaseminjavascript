@@ -13,7 +13,7 @@ h1 {
 	color: #FF0066;
 }
 
-a {
+a, .contact {
 	text-decoration: none;
 	color: white;
 }
@@ -54,7 +54,6 @@ p {
 
 }
 
-
 .project_names {
 	font-family: "fontBody";
 	font-size: 0.7vw;
@@ -81,3 +80,24 @@ p {
 .title {
 	padding-bottom: 10%;
 }
+.punctuation{
+	color: white;
+}
+
+.className{
+	color: #FFFF66;
+}
+.contact {
+	font-family: "fontBody";
+	font-size: 0.7vw;
+	position: fixed;
+	bottom: 2%;
+	padding-left: 2%;
+}
+.email {
+	color: #FF0066;
+}
+
+
+
+
