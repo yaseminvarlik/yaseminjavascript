@@ -51,10 +51,10 @@ p {
 	position: fixed;
 	top: 2%;
 	left: 55%;
-
+	font-size: 0.7vw;
 }
 
-.project_names {
+.project_names p {
 	font-family: "fontBody";
 	font-size: 0.7vw;
 	color: #00CCFF;
@@ -88,14 +88,14 @@ p {
 	color: #FFFF66;
 }
 .contact {
-	font-family: "fontBody";
-	font-size: 0.7vw;
 	position: fixed;
 	bottom: 2%;
 	padding-left: 2%;
 }
 .email {
+	font-family: "fontBody";
 	color: #FF0066;
+	font-size: 0.7vw;
 }
 
 
