@@ -66,7 +66,7 @@ p {
 	width: 30vw;
 }
 
-.project_names {
+.project_names p {
 	font-family: "fontBody";
 	font-size: 0.7vw;
 	color: #00CCFF;
