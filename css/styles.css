@@ -1,4 +1,11 @@
 
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
 @font-face {
     font-family: fontBody;
     src: url(./fonts/type_writer.ttf);
@@ -110,15 +117,9 @@ p {
 }
 
 
-@media screen and (min-width: 28.75em) {
-	p {
-		width: 40%;}
+/*@media screen and (min-width: 28.75em) {
+	body {
+		font-size: 10%;}
 	}
-}
+}*/
 
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
