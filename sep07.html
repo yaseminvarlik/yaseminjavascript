@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <script type="text/javascript" src="js/secondclass.js"></script> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <link href="./css/stylessec.css" media="all" rel="stylesheet" /> -->
+	<title>Sep 07</title>
+	<style type="text/css">
+		html {
+			background-color: pink;
+		}
+
+		.newHeader {
+			color: green;
+			font-weight: 300;
+			font-family: monospace;
+		}
+
+		.blue {
+			background-color: blue;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		
+	</div>
+
+
+		<script type="text/javascript">
+
+		var myArray = [
+		["hello", 37], 
+		["goodbye", "blue"], 
+		["class", 3], 
+		["random words", 3],
+		];
+
+		for (var i = 0; i<myArray.length ; i++) {
+
+			var element = document.createElement("div");
+			element.className = "newHeader"
+			if (typeof myArray[i][1] == "number") {
+			element.innerHTML = `
+			<h1> ${myArray[i][0]}</h1>
+			<h1 style= "font-size: ${myArray[i][1]}px"> ${myArray[i][0]}</h1>
+
+
+			`	
+			} 
+			//individual array
+			//<h1> ${myArray[i]}</h1>
+
+			document.getElementById("wrapper").appendChild(element);
+		}
+
+
+
+
+		</script>
+</body>
+</html>
