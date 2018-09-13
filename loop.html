@@ -9,46 +9,68 @@
 			background-color: black;
 
 		}
-		#repeat {
+		/*.newHeader{
+			color: green;
+			font-weight: 300;
+			font-family: monospace;
+		}*/
+		/*#repeat {
 			color: white;
 			font-family: avenir;
 			font-size: 2vw;
+		}*/
+		.wrapper {
+			width: 1000px;
+			height: 500px;
 		}
 
-		p{
-			display: inline;
-		}
-
-		#shape {
+		.shape {
 			background-color: white;
-			width: 0.25vw;
-			height: 100vh;
+			width: 3px;
+			height: 100px;
+			position: absolute;
+			top: 0%;
+			left: 50%;
 		}
 
 	</style>
 </head>
 <body>
-	<div id="repeat">
-		
-	</div>
-	<div id="shape">
-		
-	</div>
+	<div id="wrapper">
+
+</div>
 </body>
 
 <script type="text/javascript">
-	var myShape = document.getElementById("shape");
-	var i = 0;
-	var len = myShape.length;
-	
-	for (var i = 0; i < 101 ; i++) {
-		
+		var myArray = document.getElementById("wrapper");
+		var thickLine = [4, 3, 2, 8, 10];
+		var highLine = [200, 350, 450, 300, 100];
 
-		console.log(i);
-
+		for (var i = 0; i < 101; i++) {
+			console.log(i % 5);
+			var min = 200;
+			var max= 1200;
+			var position= Math.floor(Math.random()* (max - min) +min);
+			var x = Math.floor(Math.random()* (max - min) +min);
+			var y = Math.floor(Math.random()* (max - min) +min);
+			// console.log(position);
+			var element = document.createElement("div");
+			element.className = "shape";
+			element.style.top = x + "px";
+			element.style.left = y + "px";
+			var Mod = i % 5;
+			element.style.width = thickLine[Mod] + "px";
+			element.style.height = highLine[Mod] + "px";
+			// element.innerHTML = `
+			// <p style = "top:${x}px; left:${x}px"></p>
+			// `
+			// console.log(x, y);
 			
-			}
-			document.getElementById("repeat").appendChild(shape);
+			document.getElementById("wrapper").appendChild(element);
+							
+		
+		}
+
 	
 </script>
 </html>
