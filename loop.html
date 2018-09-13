@@ -9,6 +9,10 @@
 			background-color: black;
 
 		}
+
+		body{
+			overflow-y: hidden;
+		}
 		/*.newHeader{
 			color: green;
 			font-weight: 300;
@@ -19,9 +23,14 @@
 			font-family: avenir;
 			font-size: 2vw;
 		}*/
-		.wrapper {
-			width: 1000px;
-			height: 500px;
+		#wrapper {
+			width: 400px;
+			height: 400px;
+			position: fixed;
+			top: 10%;
+			left: 32%;
+			
+
 		}
 
 		.shape {
@@ -29,8 +38,7 @@
 			width: 3px;
 			height: 100px;
 			position: absolute;
-			top: 0%;
-			left: 50%;
+			
 		}
 
 	</style>
@@ -43,21 +51,23 @@
 
 <script type="text/javascript">
 		var myArray = document.getElementById("wrapper");
-		var thickLine = [4, 3, 2, 8, 10];
+		var thickLine = [1, 3, 5, 15, 10];
 		var highLine = [200, 350, 450, 300, 100];
 
 		for (var i = 0; i < 101; i++) {
 			console.log(i % 5);
-			var min = 200;
-			var max= 1200;
+			var min = 20;
+			var max= 500;
+			var maxy = 400;
+			var miny = 20;
 			var position= Math.floor(Math.random()* (max - min) +min);
 			var x = Math.floor(Math.random()* (max - min) +min);
-			var y = Math.floor(Math.random()* (max - min) +min);
+			var y = Math.floor(Math.random()* (maxy - miny) +miny);
 			// console.log(position);
 			var element = document.createElement("div");
 			element.className = "shape";
-			element.style.top = x + "px";
-			element.style.left = y + "px";
+			element.style.top = y + "px";
+			element.style.left = x + "px";
 			var Mod = i % 5;
 			element.style.width = thickLine[Mod] + "px";
 			element.style.height = highLine[Mod] + "px";
