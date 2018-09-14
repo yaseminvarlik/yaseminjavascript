@@ -27,7 +27,7 @@
 			width: 400px;
 			height: 400px;
 			position: fixed;
-			top: 10%;
+			top: 15%;
 			left: 32%;
 			
 
@@ -51,14 +51,14 @@
 
 <script type="text/javascript">
 		var myArray = document.getElementById("wrapper");
-		var thickLine = [1, 3, 5, 15, 10];
+		var thickLine = [1, 2, 5, 9, 15];
 		var highLine = [200, 350, 450, 300, 100];
 
 		for (var i = 0; i < 101; i++) {
 			console.log(i % 5);
 			var min = 20;
 			var max= 500;
-			var maxy = 400;
+			var maxy = 250;
 			var miny = 20;
 			var position= Math.floor(Math.random()* (max - min) +min);
 			var x = Math.floor(Math.random()* (max - min) +min);
