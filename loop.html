@@ -26,9 +26,10 @@
 		#wrapper {
 			width: 400px;
 			height: 400px;
-			position: fixed;
+			position: absolute;
 			top: 15%;
-			left: 32%;
+			left: 50%;
+			transform: translate(-70%);
 			
 
 		}
@@ -54,7 +55,7 @@
 		var thickLine = [1, 2, 5, 9, 15];
 		var highLine = [200, 350, 450, 300, 100];
 
-		for (var i = 0; i < 101; i++) {
+		for (var i = 0; i < 100; i++) {
 			console.log(i % 5);
 			var min = 20;
 			var max= 500;
