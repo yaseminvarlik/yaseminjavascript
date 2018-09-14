@@ -10,8 +10,15 @@
 
 		}
 
+		html, body, div {
+			padding: 0;
+			margin: 0;
+			font-size: 0;
+		}
+
 		body{
-			overflow-y: hidden;
+			/*overflow-y: hidden;*/
+			height: 100vh;
 		}
 		/*.newHeader{
 			color: green;
@@ -24,12 +31,15 @@
 			font-size: 2vw;
 		}*/
 		#wrapper {
-			width: 400px;
-			height: 400px;
-			position: absolute;
-			top: 15%;
+			/*width: 70vw;*/
+			height: 20vw;
+			position: relative;
+			top: 10%;
 			left: 50%;
-			transform: translate(-70%);
+			transform: translate(-18%);
+			display: flex;
+			align-items: center;
+
 			
 
 		}
@@ -39,27 +49,42 @@
 			width: 3px;
 			height: 100px;
 			position: absolute;
-			
+
+
+			/*
+
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+
+			transform: translateY(VARIABLEpx);
+
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);*/
 		}
 
 	</style>
 </head>
 <body>
-	<div id="wrapper">
+	<div id="wrapper"></div>
 
-</div>
 </body>
 
 <script type="text/javascript">
 		var myArray = document.getElementById("wrapper");
-		var thickLine = [1, 2, 5, 9, 15];
-		var highLine = [200, 350, 450, 300, 100];
+		var thickLine = [0.3, 0.122, 0.215, 0.4, 0.88];
+		var highLine = [15, 65, 20, 71, 98];
+
+		// adding all the different widths
+
+		// var totalWidth = 0;
 
 		for (var i = 0; i < 100; i++) {
 			console.log(i % 5);
 			var min = 20;
 			var max= 500;
-			var maxy = 250;
+			var maxy = 400;
 			var miny = 20;
 			var position= Math.floor(Math.random()* (max - min) +min);
 			var x = Math.floor(Math.random()* (max - min) +min);
@@ -70,8 +95,10 @@
 			element.style.top = y + "px";
 			element.style.left = x + "px";
 			var Mod = i % 5;
-			element.style.width = thickLine[Mod] + "px";
-			element.style.height = highLine[Mod] + "px";
+			element.style.width = thickLine[Mod] + "%";
+			element.style.height = highLine[Mod] + "%";
+
+			// totalWidth = totalWidth + thickLine[Mod];
 			// element.innerHTML = `
 			// <p style = "top:${x}px; left:${x}px"></p>
 			// `
@@ -81,6 +108,9 @@
 							
 		
 		}
+
+		// console.log(totalWidth)
+		//document.getElementById("wrapper").style.width = totalWidth + "px";
 
 	
 </script>
