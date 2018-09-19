@@ -38,11 +38,10 @@
 			left: 50%;
 			transform: translate(-18%);
 			display: flex;
-			align-items: center;
-
-			
+			align-items: center;	
 
 		}
+
 
 		.shape {
 			background-color: white;
@@ -75,28 +74,39 @@
 		var myArray = document.getElementById("wrapper");
 		var thickLine = [0.3, 0.122, 0.215, 0.4, 0.88];
 		var highLine = [15, 65, 20, 71, 98];
+		var timer = 0;
+		var counter = 0;
+		
+
+	
 
 		// adding all the different widths
 
 		// var totalWidth = 0;
-
+		setTimeout(function(){ 
 		for (var i = 0; i < 100; i++) {
-			console.log(i % 5);
+				
+			
+			//console.log(i % 5); 
 			var min = 20;
 			var max= 500;
 			var maxy = 400;
 			var miny = 20;
-			var position= Math.floor(Math.random()* (max - min) +min);
+			var position= Math.floor(Math.random()* (max - min) +min); 
 			var x = Math.floor(Math.random()* (max - min) +min);
 			var y = Math.floor(Math.random()* (maxy - miny) +miny);
 			// console.log(position);
+			
 			var element = document.createElement("div");
 			element.className = "shape";
 			element.style.top = y + "px";
 			element.style.left = x + "px";
 			var Mod = i % 5;
+			
 			element.style.width = thickLine[Mod] + "%";
 			element.style.height = highLine[Mod] + "%";
+			
+		
 
 			// totalWidth = totalWidth + thickLine[Mod];
 			// element.innerHTML = `
@@ -105,9 +115,53 @@
 			// console.log(x, y);
 			
 			document.getElementById("wrapper").appendChild(element);
-							
+			setTimeout(function(){
+			location.reload();
+			}, 2000);
+			};
+			}, 1000);
+			
+			
+			
+		// 	for (var i = 0; i < 100; i++) {
+				
+		// 	setTimeout(function(){ 
+		// 	//console.log(i % 5); 
+		// 	var min = 20;
+		// 	var max= 500;
+		// 	var maxy = 400;
+		// 	var miny = 20;
+		// 	var position= Math.floor(Math.random()* (max - min) +min); 
+		// 	var x = Math.floor(Math.random()* (max - min) +min);
+		// 	var y = Math.floor(Math.random()* (maxy - miny) +miny);
+		// 	// console.log(position);
+			
+		// 	var element = document.createElement("div");
+		// 	element.className = "shape";
+		// 	element.style.top = y + "px";
+		// 	element.style.left = x + "px";
+		// 	var Mod = i % 5;
+		// 	element.style.width = thickLine[Mod] + "%";
+		// 	element.style.height = highLine[Mod] + "%";
+			
 		
-		}
+
+		// 	// totalWidth = totalWidth + thickLine[Mod];
+		// 	// element.innerHTML = `
+		// 	// <p style = "top:${x}px; left:${x}px"></p>
+		// 	// `
+		// 	// console.log(x, y);
+		
+		// 	document.getElementById("wrapper").appendChild(element);
+		// 	counter++;
+		// 	}, timer);
+  //   		timer += 100;	
+			
+		// };
+		
+
+		
+
 
 		// console.log(totalWidth)
 		//document.getElementById("wrapper").style.width = totalWidth + "px";
