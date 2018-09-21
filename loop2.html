@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>For Loop</title>
+	<title>Animation Pattern</title>
 	 <link rel="shortcut icon" type="image/png" href="./css/jpg/favicon_loop.png"/>
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	 <style type="text/css">
@@ -76,14 +76,22 @@
 		var highLine = [15, 65, 20, 71, 98];
 		var timer = 0;
 		var counter = 0;
-		
+		var blackORWhite ="rgb(255, 255,255)";
 
 	
 
 		// adding all the different widths
 
 		// var totalWidth = 0;
-		setTimeout(function(){ 
+		setInterval(function(){ 
+
+			var child = document.getElementsByClassName('shape');
+			if(child){
+				for (var x = 0; x < child.length; x++) {
+					child[x].remove()
+				}
+			}
+
 		for (var i = 0; i < 100; i++) {
 				
 			
@@ -106,22 +114,32 @@
 			element.style.width = thickLine[Mod] + "%";
 			element.style.height = highLine[Mod] + "%";
 			
-		
+			
+
+			// if (element.style.color == "black") {
+			// 	blackORWhite = "rgb(255, 255,255)";
+			// } else {
+			// 	blackORWhite= "rgb(0,0,0)";
+			// }
+			// element.style.background = blackORWhite;
+			
 
 			// totalWidth = totalWidth + thickLine[Mod];
 			// element.innerHTML = `
 			// <p style = "top:${x}px; left:${x}px"></p>
 			// `
 			// console.log(x, y);
-			
+				
+		 	
 			document.getElementById("wrapper").appendChild(element);
-			setTimeout(function(){
-			location.reload();
-			}, 1000);
+			
 			};
-			}, 800);
+
+
+
+			}, 1000);
 			
-			
+			// instead of location reload, try using a) setInterval, and b) you want to include the remove()
 			
 		// 	for (var i = 0; i < 100; i++) {
 				
@@ -151,9 +169,15 @@
 		// 	// <p style = "top:${x}px; left:${x}px"></p>
 		// 	// `
 		// 	// console.log(x, y);
+
+		// 	var child = document.getElementsByClassName('shape');
+		// 	if(child){
+		// 		child.remove()
+		// 	}
 		
 		// 	document.getElementById("wrapper").appendChild(element);
 		// 	counter++;
+
 		// 	}, timer);
   //   		timer += 100;	
 			

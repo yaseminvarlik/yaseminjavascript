@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Set Timeout Dot
+	</title>
+
+	<style type="text/css">
+		
+	html {
+		background-color: black;
+	}
+
+	#wrapper {
+		width: 100vw;
+	}
+
+	html, body, div {
+			padding: 0;
+			margin: 0;
+			font-size: 0;
+		}
+
+	.container {
+		
+		position: absolute;
+		display: block;
+		width: 50vw;
+		height: 50vw;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.circle {
+		position: absolute;
+		/*background-color: red;*/
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+	}
+	</style>
+</head>
+<body>
+	<div id="wrapper"></div>
+
+	<script type="text/javascript">
+		var interval = 0;
+		var counter = 0;
+
+
+		var circleDiameter = 0;
+		var direction = false;
+
+		var totalLength = 100;
+
+		for (var i = 0; i < totalLength; i++) {
+			
+			var container = document.createElement("div");
+			container.className = "container";
+			
+			setTimeout(function(){
+
+
+			
+			
+		// circleDiameter--;
+
+		// if(circleDiameter == 10){
+		// 	circleDiameter=0;
+		// }
+
+		// var circleDiameter = i % 10;
+
+		if(counter % 5 == 0){
+			if(direction){
+				direction=false;
+				// circleDiameter = 5;
+			}else{
+				direction=true;
+				circleDiameter = 1;
+			}
+		}
+		if (!direction) {
+				circleDiameter--;
+			}else{
+				circleDiameter++;
+			}
+
+			
+			var progress = counter/(totalLength - 1);
+			var red = 255 - (progress*255);
+			var blue = progress*255;
+
+			var color = "rgb("+ red +", 0, "+ blue + ")";
+			var percentage = circleDiameter / 5;
+			
+			container.innerHTML  = `
+			<div style= "background-color:${color};opacity:${percentage}; width:${circleDiameter * 5}vw; height:${circleDiameter*5}vw" class= "circle"></div>
+
+
+			`
+
+			var child = document.getElementsByClassName('container')[0];
+			if(child){
+				child.remove()
+			}
+			// child.remove();
+			document.getElementById("wrapper").appendChild(container);
+			counter++;
+
+			}, interval)
+			interval += 100;	
+		}
+
+
+
+
+	</script>
+
+</body>
+</html>

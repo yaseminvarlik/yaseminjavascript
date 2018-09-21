@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Set Timeout</title>
+	<style type="text/css">
+
+	html, body {
+	padding:0;
+	margin:0;
+	font-size:15px;
+	text-align: center;
+}
+
+	.weather{
+	font-size: 20px;
+
+	}
+</style>
+</head>
+<body>
+	<div id="wrapper"></div>
+	<script type="text/javascript">
+		
+			// for (var i = 0; i < 10; i++) {
+				
+			//  if(x="hello"){
+			//  	console.log("for loop", i);
+			//  }
+			// }
+			// var k = "hello";
+			// while( k == "hello"){
+			// console.log("while", k);
+			// // k++;
+			// k="not hello"
+			// }
+
+//Set Timeout
+//input --> function() -> output 
+
+	// var interval = Math.round(Math.random() * 10000);
+	// var counter = 0; 
+
+
+	// for (var i = 0; i < 50; i++) {
+
+	// 	// setTimeout(function(){
+	// 	// console.log("hello");
+
+	// 	// }, 1000);
+
+	// 	setTimeout(function(){
+	// 	console.log("hello", counter);
+
+	// 	counter++;
+
+	// 	}, interval);
+	// 	interval+= 100; //interval = interval + 100
+	// 	// interval = Math.round(Math.random() * 10000);
+	// }
+// Math.ceil()// round up
+// Math.floor()//round down
+// var RanNUm= 50 + Math.random()* 50;//Number between 50-100
+
+// var RanNUm= Math.random()*10;//random number betweeen 0-1;
+// var roundedNum = Math.ceil(RanNUm);
+// console.log(RanNUm, roundedNum);
+	var interval = 0;
+	var counter = 0; 
+for (var i = 0; i < 100; i++) {
+
+		setTimeout(function(){
+		var weather = document.createElement("div");
+		weather.className = "weather";
+		
+		var snow = ""; //inner HTML
+
+		for (var k = 0; k < 10; k++) {
+			//we want to compile the snow/rain string
+			var snowOrRain = Math.ceil(Math.random() * 100);
+			if(snowOrRain <= 33){
+				snow+= "";
+			} else if(snowOrRain > 33 && snowOrRain <= 66){
+				snow += "💧";
+			} else if (snowOrRain > 66) {
+				snow += "❄️";
+
+			}
+
+		}
+		weather.innerHTML = snow;
+		document.getElementById("wrapper").appendChild(weather);
+
+		window.scrollTo(0, document.body.scrollHeight);
+		counter++;
+
+	 }, interval);
+
+		interval+= 100;
+	}
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
