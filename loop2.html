@@ -17,12 +17,13 @@
 		}
 
 		body{
-			/*overflow-y: hidden;*/
+			overflow-y: hidden;
+			overflow-x: hidden;
 			height: 100vh;
 		}
 		/*.newHeader{
 			color: green;
-			font-weight: 300;
+			font-weight: 300;r
 			font-family: monospace;
 		}*/
 		/*#repeat {
@@ -34,7 +35,7 @@
 			/*width: 70vw;*/
 			height: 20vw;
 			position: relative;
-			top: 10%;
+			top: 15%;
 			left: 50%;
 			transform: translate(-18%);
 			display: flex;
@@ -44,12 +45,25 @@
 
 
 		.shape {
-			background-color: white;
+			/*background-color: black;*/
 			width: 3px;
 			height: 100px;
 			position: absolute;
+		}
 
+		.shape {
+		-webkit-animation: rotation 4s linear;
+		animation-direction: alternate, reverse;
+}		
 
+			@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(360deg);
+		}
+		}
 			/*
 
 			position: relative;
@@ -72,27 +86,46 @@
 
 <script type="text/javascript">
 		var myArray = document.getElementById("wrapper");
-		var thickLine = [0.3, 0.122, 0.215, 0.4, 0.88];
-		var highLine = [15, 65, 20, 71, 98];
+		var thickLine = [0.3, 0.122, 0.215, 0.25, 0.22];
+		var highLine = [15, 65, 20, 71, 98, 100];
 		var timer = 0;
 		var counter = 0;
-		var blackORWhite ="rgb(255, 255,255)";
-
+		var blackORWhite = "black";
+		// var color = Math.floor(Math.random(blackORWhite));
 	
 
 		// adding all the different widths
 
 		// var totalWidth = 0;
+
+
 		setInterval(function(){ 
 
+			
+            var rotate = ['rotate(90deg)', 'rotate(360deg)'];
+			var angle = rotate[Math.floor(Math.random() * rotate.length)];
 			var child = document.getElementsByClassName('shape');
 			if(child){
 				for (var x = 0; x < child.length; x++) {
-					child[x].remove()
+					child[x].remove();
+					child[x].style.webkitTransform = angle;
+					
 				}
 			}
 
-		for (var i = 0; i < 100; i++) {
+		
+				var fadeEffect = setInterval(function () {
+        if (!element.style.opacity) {
+            element.style.opacity = 1;
+        }
+        if (element.style.opacity > 0) {
+            element.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect);
+        }
+    	}, 600);
+
+		for (var i = 0; i < 50; i++) {
 				
 			
 			//console.log(i % 5); 
@@ -103,41 +136,56 @@
 			var position= Math.floor(Math.random()* (max - min) +min); 
 			var x = Math.floor(Math.random()* (max - min) +min);
 			var y = Math.floor(Math.random()* (maxy - miny) +miny);
-			// console.log(position);
+			var color = '#';
+            var letters = ['000000','FFFFFF'];
+            
+			
 			
 			var element = document.createElement("div");
 			element.className = "shape";
 			element.style.top = y + "px";
 			element.style.left = x + "px";
 			var Mod = i % 5;
+		
 			
-			element.style.width = thickLine[Mod] + "%";
-			element.style.height = highLine[Mod] + "%";
+			element.style.width = thickLine[Mod]* (Math.random()* 48) + "%";
+			element.style.height = highLine[Mod]* (Math.random()* 1.2) + "%";
+			
+			color += letters[Math.floor(Math.random() * letters.length)];
 			
 			
-
-			// if (element.style.color == "black") {
-			// 	blackORWhite = "rgb(255, 255,255)";
+		
+			
+			
+			// if (element.style.color = "white") {
+			// 	blackORWhite = "rgb(255,255,255)";
 			// } else {
 			// 	blackORWhite= "rgb(0,0,0)";
 			// }
 			// element.style.background = blackORWhite;
-			
 
 			// totalWidth = totalWidth + thickLine[Mod];
 			// element.innerHTML = `
 			// <p style = "top:${x}px; left:${x}px"></p>
 			// `
 			// console.log(x, y);
-				
+		
 		 	
-			document.getElementById("wrapper").appendChild(element);
+			document.getElementById("wrapper").appendChild(element, fadeEffect);
+		
+
+				if (document.body.style.background  = color) 
+		{	
+			element.style.background = color;
+
+		} else if (document.body.style.background  = color)
 			
+			element.style.background = color;
+			
+
 			};
+			}, 2000);
 
-
-
-			}, 1000);
 			
 			// instead of location reload, try using a) setInterval, and b) you want to include the remove()
 			
