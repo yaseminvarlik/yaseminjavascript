@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Functions and Jquery</title>
+	<style type="text/css">
+		
+
+
+	</style>
+</head>
+<body>
+	<div class="wrapper"></div>
+
+	<script type="text/javascript">
+		
+		//Input ----> function() ---> Output 
+		// var myVar = "hello",
+
+		var myVar = 3;
+		var mySecondVar = 4;
+
+		var myFunction = function(number1, number2){
+			//we can do something 
+			// console.log(number1 + number2);
+			var sum = number1 + number2;
+			return sum;
+		}
+
+		// myFunction(myVar, mySecondVar);
+		// myFunction(mySecondVar);
+
+		// anotherFunction function() {}
+		var thisInstance = myFunction(myVar, mySecondVar);
+		console.log(thisInstance);
+			//mathematical format using one calculation twice, gives 7 but double it 14
+		var anotherInstance = myFunction(thisInstance, thisInstance);
+		console.log(anotherInstance);
+
+
+		var myArray = [
+			"list",
+			"var",
+			34, 
+			40
+		];
+
+		// myArray[0];
+		var myObject = { 
+			"location": "Central Park",
+			"season": ["Autumn", "Winter", "Summer", "Spring"],
+			"treeamount": 1000,
+			"pigeons": {"spotted": 200,
+						"dirty": "all",
+						"names" : ["Fred", "George"]
+					},
+
+			"extraFunction" : function(input){
+				console.log(input);
+			}
+					};
+
+			// console.log(myObject.location); //central park
+			myObject.treeamount = 1200;
+
+			// console.log(myObject.treeamount);
+			// console.log(myObject.season[1]); // call array object
+
+
+			// console.log(myObject.pigeons.names[0]);
+			myObject.extraFunction("greetings!");
+
+
+
+	</script>
+</body>
+</html>

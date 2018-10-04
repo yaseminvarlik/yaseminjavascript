@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sep 28 V2/ Function and Jquery</title>
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+			padding: 0;
+			margin: 0;
+		}
+		body, html, #wrapper {
+			width: 100%;
+		}
+
+		.testClass{
+			background-color: blue;
+
+		}
+
+		.altTestClass {
+			background-color: green;
+		}
+		.clicked {
+			font-family: cursive;
+			font-size: 50px;
+		}
+
+		.squares {
+			width: 20px;
+			height: 20px;
+			background-color: yellow;
+			display: inline-block;
+			margin-right: 2px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+		</script>
+
+	<script type="text/javascript">
+		var myFunction = function(input) {
+			console.log(input);
+		}
+	//jquery 
+	$(document).ready(function(){
+		myFunction("test");
+
+$//code is calling Jquery
+
+	$("#wrapper")//what you want to find and manipulate later
+
+	// var mywrapper = document.getElementById("wrapper");// javascript version of calling 
+
+	$("#wrapper").html("Hello");
+	$("#wrapper, .content").html("Hello");//give the same function to both content and wrapper 
+	// $("#wrapper content").html("Hello");
+
+	myVar = "Greetings!";
+	// $("#wrapper, .content").html("<h1>Hello</h1>");
+	$("#wrapper, .content").html("<h1>" + myVar + "</h1>");
+
+	var color = "#0ff";
+	$("#wrapper").css({"background-color": "red", 
+						"color": color
+	});
+
+	//for loop
+	$(".anotherClass").each(function(){
+		$(this).html("greetings");//do this to evey div with the same name
+		$(this).html($(this).index());
+		if($(this).index()% 2){
+			$(this).html("hello")
+			$(this).addClass("testClass")
+		} else{
+			$(this).html("goodbye")
+			$(this).addClass("altTestClass")
+		}
+	})
+
+	// $(".anotherClass").hide();
+	// $(".anotherClass").remove();
+	// $(".anotherClass").show(); //display block
+	// $(".anotherClass").toggleClass("altTestClass");
+	// $(".anotherClass").append();//after
+	// $(".anotherClass").prepend();//before
+
+	// mouseup
+	// mousedown
+	// mousemove 
+	//mouseenter
+	//mouseleave
+
+	$(".anotherClass").click(function(){
+		$(this).toggleClass("clicked");
+
+	});
+
+	// var outside = 100;
+
+	for (var i = 0; i < 100; i++) {
+
+		$("body").prepend("<div class='squares'></div");
+			}
+		});
+	</script>
+
+</head>
+<body>
+	<div id="wrapper"></div>
+	<div class="anotherClass"></div>
+	<div class="anotherClass"></div>
+	<div class="anotherClass"></div>
+	<div class="anotherClass"></div>
+	<div class="anotherClass"></div>
+	<div class="anotherClass"></div>
+	
+
+</body>
+</html>
