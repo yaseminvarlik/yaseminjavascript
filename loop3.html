@@ -2,10 +2,13 @@
 <html>
 <head>
 	<title>Animation Pattern</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	 <meta charset="utf-8">
 	 <link rel="shortcut icon" type="image/png" href="./css/jpg/favicon_loop.png"/>
 	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	 <script src="js/modernizr-2.8.3.min.js"></script> -->
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 	 <style type="text/css">
 
 		html, body, div {
@@ -191,21 +194,36 @@
 			var pixelate = pixels[Math.floor(Math.random() * pixels.length)];
 			var blackORWhite = ["black", "white"];
 			var colorBW = blackORWhite[Math.floor(Math.random() * blackORWhite.length)];
-			
 
 			$(".shape").mousemove(function(event){
 				$(".shape").addClass("animation");
+				$(".shape").css(
+					'background-color', "black",
+					// 'transform', 'scale('0.5')'
+				);
 				$('#wrapper').css({
 					top: event.pageY - max/2,
        				left: event.pageX - maxy/2
        				
        			});
        			$("html ,body").css(
-					'background-color', "black"
+					'background-color', "white"
 				);
+				// element.style.background = blackORWhite[0];
 			});
 
 		
+			if (document.body.style.background  = "black") 
+				{	
+				element.style.background = pixelate;
+
+				} 
+			
+			};
+
+			}, 2000);
+
+		setInterval(function(){ 
 			
 			$(".shape").click(function(){
 				$(".shape").removeClass("animation");
@@ -215,16 +233,7 @@
 				$(".shape").css(
 					"background", "black")
 			});
-			
-			if (document.body.style.background  = colorBW) 
-				{	
-				element.style.background = pixelate;
-
-				} 
-			
-			};
-
-			}, 2000);
+			}, 8000);
 
 			
 				
