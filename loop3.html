@@ -188,7 +188,19 @@
 			var pixelate = pixels[Math.floor(Math.random() * pixels.length)];
 			var blackORWhite = ["black", "white"];
 			var colorBW = blackORWhite[Math.floor(Math.random() * blackORWhite.length)];
-			$(".shape").mousemove(function(event){
+
+
+		
+			if (document.body.style.background  = "black") 
+				{	
+				element.style.background = pixelate;
+
+				} 
+
+			
+			};
+
+				$(".shape").mousemove(function(event){
 				$(".shape").addClass("animation");
 				$(".shape").css(
 					'background-color', "black",
@@ -203,16 +215,6 @@
 				);
 				
 			});
-
-
-		
-			if (document.body.style.background  = "black") 
-				{	
-				element.style.background = pixelate;
-
-				} 
-			
-			};
 
 		
 
