@@ -72,6 +72,10 @@
 			position: absolute;
 
 		}
+		
+		.size{ 
+		transform:  scale(0.5,0.5);
+	}
 			/*
 
 			position: relative;
@@ -121,7 +125,7 @@
 		// var totalWidth = 0;
 
 		
-		setInterval(function(){ 
+		setInterval(function shapes(){ 
 
 			
             var rotate = ['rotate(90deg)', 'rotate(360deg)'];
@@ -140,28 +144,16 @@
 					
 				} 
 			} 
-		
-		// var fadeEffect = setInterval(function () {
-  //       if (!element.style.opacity) {
-  //           element.style.opacity = 1;
-  //       }
-  //       if (element.style.opacity > 0) {
-  //           element.style.opacity -= 0.1;
-  //       } else {
-  //           clearInterval(fadeEffect);
-  //       }
-  //   	}, 1000);
 
-
-
+			
 		for (var i = 0; i < 50; i++) {
 
 				
 
 			//console.log(i % 5); 
 			var min = 10;
-			var max= 600;
-			var maxy = 600;
+			var max= 400;
+			var maxy = 400;
 			var miny = 10;
 			var position= Math.floor(Math.random()* (max - min) +min); 
 			var x = Math.floor(Math.random()* (max - min) +min);
@@ -187,30 +179,33 @@
 
 
 			// $(".shape").draggable();
+
 		 	
 			document.getElementById("wrapper").appendChild(element);
+
 			 
    			var pixels = ['#FF0000','#00FF13', '#FF00FF','yellow','#001FFF','white'];
 			var pixelate = pixels[Math.floor(Math.random() * pixels.length)];
 			var blackORWhite = ["black", "white"];
 			var colorBW = blackORWhite[Math.floor(Math.random() * blackORWhite.length)];
-
 			$(".shape").mousemove(function(event){
+				max = 100;
+				maxy = 100;
 				$(".shape").addClass("animation");
 				$(".shape").css(
 					'background-color', "black",
-					// 'transform', 'scale('0.5')'
 				);
 				$('#wrapper').css({
-					top: event.pageY - max/2,
-       				left: event.pageX - maxy/2
-       				
+					top: event.pageY - max/3,
+       				left: event.pageX - maxy/3
+      
        			});
        			$("html ,body").css(
 					'background-color', "white"
 				);
-				// element.style.background = blackORWhite[0];
+				
 			});
+
 
 		
 			if (document.body.style.background  = "black") 
@@ -221,19 +216,23 @@
 			
 			};
 
+		
+
 			}, 2000);
 
-		setInterval(function(){ 
+
+		// setInterval(function(){ 
 			
-			$(".shape").click(function(){
-				$(".shape").removeClass("animation");
-				$('html, body').css(
-					'background-color', "white"
-				);
-				$(".shape").css(
-					"background", "black")
-			});
-			}, 8000);
+		// 	$(".shape").click(function(){
+		// 		$(".shape").removeClass("animation");
+		// 		$('html, body').css(
+		// 			'background-color', "white"
+		// 		);
+		// 		$(".shape").css(
+		// 			"background", "black")
+		// 	});
+		// 	}, 000);
+	
 
 			
 				
