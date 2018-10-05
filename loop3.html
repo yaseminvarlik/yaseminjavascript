@@ -125,7 +125,7 @@
 		// var totalWidth = 0;
 
 		
-		setInterval(function shapes(){ 
+		setInterval(function(){ 
 
 			
             var rotate = ['rotate(90deg)', 'rotate(360deg)'];
@@ -189,8 +189,6 @@
 			var blackORWhite = ["black", "white"];
 			var colorBW = blackORWhite[Math.floor(Math.random() * blackORWhite.length)];
 			$(".shape").mousemove(function(event){
-				max = 100;
-				maxy = 100;
 				$(".shape").addClass("animation");
 				$(".shape").css(
 					'background-color', "black",
