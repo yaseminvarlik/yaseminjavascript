@@ -74,8 +74,11 @@
 		}
 		
 		.size{ 
-		transform:  scale(0.5,0.5);
+		transform:scale(0.5, 0.5);
 	}
+		
+
+	
 			/*
 
 			position: relative;
@@ -128,8 +131,7 @@
 		setInterval(function(){ 
 
 			
-            var rotate = ['rotate(90deg)', 'rotate(360deg)'];
-			var angle = rotate[Math.floor(Math.random() * rotate.length)];
+          
 			var child = document.getElementsByClassName('shape');
 
 			
@@ -179,9 +181,20 @@
 
 
 			// $(".shape").draggable();
+			$(".shape").click(function(){
+				var theHeight = highLine[Mod]* (Math.random()* 1.2) + "%";
+				var theWidth = thickLine[Mod]* (Math.random()* 80) + "%";
+					$(".shape").animate({
+						"height": theHeight,
+						"width" : theWidth
 
+						
+
+				}, 500);
+				});
 		 	
 			document.getElementById("wrapper").appendChild(element);
+
 
 			 
    			var pixels = ['#FF0000','#00FF13', '#FF00FF','yellow','#001FFF','white'];
@@ -194,7 +207,7 @@
 			if (document.body.style.background  = "black") 
 				{	
 				element.style.background = pixelate;
-
+				
 				} 
 
 			
@@ -214,95 +227,17 @@
 					'background-color', "white"
 				);
 				
+				
 			});
+			
+
+
 
 		
 
 			}, 2000);
 
 
-		// setInterval(function(){ 
-			
-		// 	$(".shape").click(function(){
-		// 		$(".shape").removeClass("animation");
-		// 		$('html, body').css(
-		// 			'background-color', "white"
-		// 		);
-		// 		$(".shape").css(
-		// 			"background", "black")
-		// 	});
-		// 	}, 000);
-	
-
-			
-				
-			
-
-
-		
-		
-			
-		
-
-		// var newclass = 0;
-  //  		$(".shape").click(function(){
-  //  		$(body).append(this);
-		// 				// $("#wrapper").add( "div" ).addClass("newclass" );
-
-  //  					});
-		
-
-			
-			// instead of location reload, try using a) setInterval, and b) you want to include the remove()
-			
-		// 	for (var i = 0; i < 100; i++) {
-				
-		// 	setTimeout(function(){ 
-		// 	//console.log(i % 5); 
-		// 	var min = 20;
-		// 	var max= 500;
-		// 	var maxy = 400;
-		// 	var miny = 20;
-		// 	var position= Math.floor(Math.random()* (max - min) +min); 
-		// 	var x = Math.floor(Math.random()* (max - min) +min);
-		// 	var y = Math.floor(Math.random()* (maxy - miny) +miny);
-		// 	// console.log(position);
-			
-		// 	var element = document.createElement("div");
-		// 	element.className = "shape";
-		// 	element.style.top = y + "px";
-		// 	element.style.left = x + "px";
-		// 	var Mod = i % 5;
-		// 	element.style.width = thickLine[Mod] + "%";
-		// 	element.style.height = highLine[Mod] + "%";
-			
-		
-
-		// 	// totalWidth = totalWidth + thickLine[Mod];
-		// 	// element.innerHTML = `
-		// 	// <p style = "top:${x}px; left:${x}px"></p>
-		// 	// `
-		// 	// console.log(x, y);
-
-		// 	var child = document.getElementsByClassName('shape');
-		// 	if(child){
-		// 		child.remove()
-		// 	}
-		
-		// 	document.getElementById("wrapper").appendChild(element);
-		// 	counter++;
-
-		// 	}, timer);
-  //   		timer += 100;	
-			
-		// };
-		
-
-		
-
-
-		// console.log(totalWidth)
-		//document.getElementById("wrapper").style.width = totalWidth + "px";
 
 	
 </script>
