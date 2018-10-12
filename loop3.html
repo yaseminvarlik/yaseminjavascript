@@ -74,7 +74,7 @@
 		}
 		
 		.size{ 
-		transform:scale(0.5, 0.5);
+		transform: scale(8, 3);
 	}
 		
 
@@ -134,18 +134,16 @@
           
 			var child = document.getElementsByClassName('shape');
 
-			
 			if(child){
-				for (var x = 0; x < child.length; x++) {
-
-				
-   					// newclass++;
-   						child[x].remove();
-
-   					
+				for (var x = 0; x < child.length;) { 
 					
-				} 
-			} 
+   					// newclass++;
+   						child[x].remove(x);	
+					
+				}; 
+			}; 
+
+
 
 			
 		for (var i = 0; i < 50; i++) {
@@ -181,27 +179,39 @@
 
 
 			// $(".shape").draggable();
-			$(".shape").click(function(){
-				var theHeight = highLine[Mod]* (Math.random()* 1.2) + "%";
-				var theWidth = thickLine[Mod]* (Math.random()* 80) + "%";
-					$(".shape").animate({
-						"height": theHeight,
-						"width" : theWidth
+			// $(".shape").click(function(){
+			// 	var theHeight = highLine[Mod]* (Math.random()* 2) + "%";
+			// 	var theWidth = thickLine[Mod]* (Math.random()* (window.width)) + "%";
+			// 		$(".shape").animate({
+			// 			"height": theHeight,
+			// 			"width" : theWidth
 
 						
 
-				}, 500);
-				});
+			// 	}, 1000);
+			// 	});
+
+					
+
+				
+			
+		
 		 	
 			document.getElementById("wrapper").appendChild(element);
 
+			var second = document.getElementsByClassName('shape');
 
+			$(second).click(function(){
+			
+			$(".shape").addClass("size");
+				});
 			 
    			var pixels = ['#FF0000','#00FF13', '#FF00FF','yellow','#001FFF','white'];
 			var pixelate = pixels[Math.floor(Math.random() * pixels.length)];
 			var blackORWhite = ["black", "white"];
 			var colorBW = blackORWhite[Math.floor(Math.random() * blackORWhite.length)];
-
+			var theHeight = highLine[Mod]* (Math.random()* 1.2) + "%";
+				var theWidth = thickLine[Mod]* (Math.random()* 80) + "%";
 
 		
 			if (document.body.style.background  = "black") 
@@ -212,12 +222,14 @@
 
 			
 			};
+				
 
 				$(".shape").mousemove(function(event){
 				$(".shape").addClass("animation");
-				$(".shape").css(
-					'background-color', "black",
-				);
+				$(".shape").css({
+					'background-color': "black",
+					'cursor': "move",
+				});
 				$('#wrapper').css({
 					top: event.pageY - max/2,
        				left: event.pageX - maxy/2
@@ -229,13 +241,9 @@
 				
 				
 			});
-			
 
-
-
+			}, 2500);
 		
-
-			}, 2000);
 
 
 
