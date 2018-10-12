@@ -199,12 +199,7 @@
 		 	
 			document.getElementById("wrapper").appendChild(element);
 
-			var second = document.getElementsByClassName('shape');
-
-			$(second).click(function(){
 			
-			$(".shape").addClass("size");
-				});
 			 
    			var pixels = ['#FF0000','#00FF13', '#FF00FF','yellow','#001FFF','white'];
 			var pixelate = pixels[Math.floor(Math.random() * pixels.length)];
@@ -222,7 +217,16 @@
 
 			
 			};
+				var second = document.getElementsByClassName('shape');
+
+			$(second).click(function(){
+			
+			$(".shape").addClass("size");
+ 			
+   			});
+ 			
 				
+
 
 				$(".shape").mousemove(function(event){
 				$(".shape").addClass("animation");
