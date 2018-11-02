@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paper JS Boilerplate</title>
+	<style type="text/css">
+		
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		html, body{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100vh;
+		}
+
+		#paperjsCanvas{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100vh;
+		}
+
+	</style>
+
+	<script type="text/javascript" src="../assets/paper-full.min.js"></script>
+
+	<script type="text/paperscript" canvas="paperjsCanvas" >
+		
+		//your "paperscript" goes below
+
+		var height = view.size.height;
+		var width = view.size.width;
+
+
+
+		var newLine= new Path();.
+
+		var updateLine = function(width, height){
+
+		newLine.strokeColor= "red";
+		newLine.add(new Point(20, 40));
+		newLine.add(new Point(50, 100));
+		newLine.add(new Point(100, 500));
+		newLine.add(new Point(width/2, height/2));
+
+		}
+
+		updateLine();
+
+		newLine.closed="true";
+		newLine.fillColor = "yellow";
+
+		newLine.segments[0].point.x = 1000;
+		newLine.segments[0].point.y = 1400;
+
+		console.log(newLine.segments)
+
+		var newCircle = new Path.Circle(new Point(300, 300), 100);
+		newCircle.strokeColor = "blue";
+		newCircle.fillColor = "blue";
+		newCircle.opacity = 1;
+
+		var point = new Point (400, 400);
+		var size = new Size(200, 200);
+		var newRect = new Path.Rectangle(point, size);
+		newRect.fillColor = "green";
+
+		console.log(newCircle.position);
+		
+
+	}
+	}
+
+
+	</script>
+
+</head>
+<body>
+
+	<canvas id="paperjsCanvas" resize="true"></canvas>
+
+
+</body>
+</html>

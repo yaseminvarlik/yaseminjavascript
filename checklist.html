@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checklist</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	 <meta charset="utf-8">
+	 <!-- <link rel="shortcut icon" type="image/png" href="./css/jpg/favicon_loop.png"/> -->
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	 <script src="js/modernizr-2.8.3.min.js"></script> -->
+
+
+	 <style type="text/css">
+
+		html, body, div {
+			padding: 0;
+			margin: 0;
+			font-size: 0;
+			
+		}
+
+		#wrapper {
+			position: relative;
+			width: 50vw;
+			height: 50vh;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		#clock {
+			font-size: 2vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			top: 2%;
+			right: 2%;
+		}
+			#calender {
+			font-size: 2vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			top: 4%;
+			right: 2%;
+		}
+		.notes {
+			font-size: 3vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			left: 2%;
+			top: 2%;
+			display: inline-block;
+			cursor: pointer;
+		}
+
+		.shape {
+			width: 3px;
+			height: 100px;
+			background-color: #FCEF82;
+			position: absolute;
+		}
+
+			.close {
+			font-size: 1.5vh;
+			font-family: sans-serif;
+			color: black;
+			position: absolute;
+			top: 2%;
+			left: 2%;
+			cursor: pointer;
+		
+			
+		}
+
+		
+	</style>
+		
+</head>
+
+<script type="text/javascript" src="assets/paper-full.min.js"></script>
+
+	<script type="text/paperscript" canvas="paperjsCanvas" ></script>
+<body>
+
+	 <canvas id="paperjsCanvas" resize="true"></canvas>
+	<div id="wrapper"></div>
+	<div class="notes">+</div>
+	<div id="clock"></div>
+	<div id="calender"></div>
+	
+	
+
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+        <script>window.jQuery || document.write('<script src="js/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+       
+       
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+ 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  		integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  		crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+	function checkTime () {
+	var dt = new Date();
+	var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+	
+	$("#clock").html(time);
+	setInterval(checkTime, 1000);
+	}	
+	checkTime();
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; 
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+    dd = '0'+dd
+	} 
+
+	if(mm<10) {
+    mm = '0'+mm
+	} 
+
+	today = dd + '.' + mm + '.' + yyyy;
+	$("#calender").html(today);
+
+
+
+			
+
+	$(".notes").click(function(){
+			var thickLine = [50,60];
+			var highLine = [80,50];
+			var min = 800;
+			var max= 800;
+			var maxy = 800;
+			var miny = 800;
+			var position= Math.floor(Math.random()* (max - min) +min); 
+			var x = Math.floor(Math.random()* (max - min) +min);
+			var y = Math.floor(Math.random()* (maxy - miny) +miny);
+
+		var element = document.createElement("div");
+		element.className = "shape";
+		element.style.top = y + "px";
+		element.style.left = x + "px";
+		element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "%";
+		element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "%";
+		document.getElementById("wrapper").appendChild(element);
+		$(".shape").draggable();
+
+		$(element).mouseenter(function(){
+		var button = $( "<div class='close'>x</div>" );
+		$(element).append(button);
+	
+		$(element).mouseleave(function(){
+			$(button).remove();
+		});
+
+		$(button).click(function(){
+			$(element).remove();
+		});
+	});
+
+
+});
+	
+	
+	
+
+	
+
+
+	
+</script>
+</html>

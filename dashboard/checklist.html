@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	 <meta charset="utf-8">
+	 <!-- <link rel="shortcut icon" type="image/png" href="./css/jpg/favicon_loop.png"/> -->
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	 <script src="js/modernizr-2.8.3.min.js"></script> -->
+
+
+	 <style type="text/css">
+
+		html, body, div {
+			padding: 0;
+			margin: 0;
+			font-size: 0;
+			/*cursor: none;*/
+			
+		}
+
+		#wrapper {
+			position: relative;
+			width: 50vw;
+			height: 50vh;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		#clock {
+			font-size: 2vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			top: 2%;
+			right: 2%;
+		}
+			#calender {
+			font-size: 2vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			top: 4%;
+			right: 2%;
+		}
+		.notes {
+			font-size: 3vh;
+			font-family: sans-serif;
+			color: black;
+			position: fixed;
+			left: 2%;
+			top: 2%;
+			display: inline-block;
+			cursor: pointer;
+			width: 100vh;
+
+		
+		}
+
+		.shape {
+			width: 3px;
+			height: 100px;
+			background-color: #FCEF82;
+			position: absolute;
+			box-shadow: 3px 3px 15px #888888;
+			cursor: move;
+		}
+
+			.close {
+			font-size: 1.5vh;
+			font-family: sans-serif;
+			color: black;
+			position: absolute;
+			top: 2%;
+			left: 2%;
+			cursor: pointer;
+		
+			
+		}
+
+		.colors {
+			position: absolute;
+			top:10%;
+			left: 2%;
+		}
+
+		.pink, .green, .yellow {
+			display: block;
+			position: relative;
+			top: 0;
+			left: 0;
+			height: 2vh;
+  			width: 2vh;
+  			border-radius: 50%;
+  			margin-bottom: 1vh;
+  			cursor: pointer;
+ 			
+		}
+
+		.pink {
+			background-color: #ff0dbf;
+		}
+		.yellow{
+			background-color:  #FCEF82;
+		} 
+		.green {
+			background-color: #00FF00 ;
+		}
+
+		.type {
+			background-color: transparent;
+			border: none;
+			position:absolute;
+			top: -20%;
+			left: 5%;
+			width: 90%;
+			height: 70%;
+			outline: none;
+			display: block;
+			white-space: nowrap;
+  			overflow: hidden;
+
+
+		}
+
+		#paperjsCanvas{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100vh;
+		}
+
+		#mona{
+	position:absolute;
+	width: 20px;
+	height: 20px;
+	z-index: 10;
+	}
+
+		
+	</style>
+		
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+	<script type="text/javascript" src="./assets/paper-full.min.js"></script>
+
+
+	<script type="text/paperscript" canvas="paperjsCanvas" >
+		
+		var height = view.size.height;
+		var width = view.size.width;
+		
+		
+		
+		var raster = new Raster({
+    	source: 'assets/img/smiley.png',
+    	position: view.center
+			});
+
+		
+		raster.scale(0.09);
+		raster.onMouseMove = function(event) {
+		var path;
+		path = new Path();
+		path.add(event.point);
+    	this.position = event.point;
+    	//console.log(path);
+    	var delta = event.delta;
+    
+		if (delta.x < 1){
+ 		raster.source="assets/img/sad.png"
+ 		} else if(delta.x >= 2 && delta.x < 4){
+		raster.source="assets/img/smiley.png"
+		}else if(delta.x >= 5 && delta.x < 8){
+		raster.source="assets/img/tongue.png"
+		}else if(delta.x >= 9 && delta.x < 12){
+		raster.source="assets/img/heart.png"
+		}
+		console.log(delta);
+ 		}
+
+
+	</script>
+
+
+</head>
+<body>
+
+	 <canvas id="paperjsCanvas" resize="true"></canvas>
+
+	 <div class="colors">
+	 	<div class="pink"></div>
+	 	<div class="yellow"></div>
+	 	<div class="green"></div>
+	 </div>
+	<div id="wrapper">
+	</div>
+	<div class="notes">+</div>
+	<div id="clock"></div>
+	<div id="calender"></div>
+
+	
+	
+
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+        <script>window.jQuery || document.write('<script src="assets/js/jquery-1.11.3.min.js"><\/script>')</script>
+        
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  		integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  		crossorigin="anonymous"></script>
+
+        <!-- <script src="../js/plugins.js"></script> -->
+       
+       
+		<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+ 		
+
+
+
+  <script type="text/javascript">
+
+	
+
+  	$(document).ready(function(){
+
+
+  	function checkTime () {
+	var dt = new Date();
+	var hour = dt.getHours();
+	var min = dt.getMinutes();
+	var sec = dt.getSeconds();
+
+	if(sec<10){
+		sec = '0' + sec
+	}
+
+	if(min<10){
+		min = '0' +min
+	}
+
+	// if(hour<10){
+	// 	hour = '0' +hour
+	// }
+	var time = hour + ":" + min + ":" + sec;
+	
+
+	$("#clock").html(time);
+	setInterval(checkTime, 1000);
+	}	
+	checkTime();
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; 
+	var yyyy = today.getFullYear();
+
+	// if(dd<10) {
+ //    dd = '0'+dd
+	// } 
+
+	if(mm<10) {
+    mm = '0'+mm
+	} 
+
+	today = dd + '.' + mm + '.' + yyyy;
+	$("#calender").html(today);
+
+});
+
+	var allNotes = [];
+	var texts = [];
+	if (Cookies.getJSON('allNotes')) {
+
+			$(".notes").click(function(){
+			var thickLine = [50,60];
+			var highLine = [80,50];
+			var min = 800;
+			var max= 800;
+			var maxy = 800;
+			var miny = 800;
+			var position= Math.floor(Math.random()* (max - min) +min); 
+			var x = Math.floor(Math.random()* (max - min) +min);
+			var y = Math.floor(Math.random()* (maxy - miny) +miny);
+
+		var element = document.createElement("div");
+		element.className = "shape";
+		element.style.top = 300 + "px";
+		element.style.left = 100 + "px";
+		element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "%";
+		element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "%";
+		document.getElementById("wrapper").appendChild(element);
+		
+
+		// // console.log(wrapper.outerHTML);
+		// allNotes.outerHTML = allNotes;
+		$(".shape").draggable();
+		// $(element).resizable();
+
+		$(element).mouseenter(function(){
+		var button = $( "<div class='close'>x</div>" );
+		$(element).append(button);
+
+		$(element).mouseleave(function(){
+			$(button).remove();
+		});
+
+		$(button).click(function(){
+			$(element).remove();
+		});
+	});
+
+		$(".pink").click(function(){
+			$(element).css("background-color", "#ff0dbf");
+
+		});
+		$(".green").click(function(){
+			$(element).css("background-color", "#00FF00");
+
+		});
+		$(".yellow").click(function(){
+			$(element).css("background-color", "#FCEF82");
+
+		});
+
+
+	$(function () {
+    $(element).dblclick(function (e) {
+        e.stopPropagation();
+        var currentEle = $(e.target);
+        var value = $(e.target).html();
+
+        console.log($(e.target));
+
+        if ($.trim(value) === "") {
+            $(currentEle).data('mode', 'add');
+        } else {
+            $(currentEle).data('mode', 'edit');
+        }
+        updateVal(currentEle, value);
+    });
+});
+});
+		
+
+		function updateVal(currentEle, value) {
+
+		    $(currentEle).html('<input class="type" type="text" value="' + "Text Here" +  '" />');
+
+		    // var mode = $(currentEle).data('mode');
+		    var textBox = $(currentEle).html('<input class="type" type="text" value="' + "Text Here" +  '" />').append('<br />');
+		    $("#wrapper").keyup(function (event) {
+		        if (event.keyCode == 13) {
+		            // $(this).parent().html($(this).val());
+		            $('.type').append(textBox);
+		        }
+		    });
+
+		       };
+
+
+			console.log('there are cookies');
+			allNotes = Cookies.getJSON('allNotes');
+
+
+			for (var i = 0; i < allNotes.length; i++) {
+
+			$(".shape").each(function(){
+			var positionLeft = $(this).css("left");
+			var positionTop = $(this).css("top");
+			var height = $(this).css("height");
+			var width = $(this).css("width");
+			var content = $(this).innerHTML();
+
+			var shapeObject = {
+			"positionLeft": positionLeft,
+			"positionTop": positionTop,
+			"height": height,
+			"width": width,
+			"content": content
+		}
+
+		allNotes.push(shapeObject);
+		Cookies.set("savedNotes", allNotes,{expires:10});
+	});
+	};
+	};
+
+
+
+
+  	
+	
+	
+
+	
+</script>
+</body>
+
+</html>
