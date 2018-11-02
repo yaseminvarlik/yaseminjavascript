@@ -155,11 +155,12 @@
 		
 		var raster = new Raster({
     	source: 'assets/img/smiley.png',
-    	position: view.center
+    	position: view.center,
+
 			});
 
-		
 		raster.scale(0.09);
+		
 		raster.onMouseMove = function(event) {
 		var path;
 		path = new Path();
