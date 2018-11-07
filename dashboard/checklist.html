@@ -15,7 +15,7 @@
 			padding: 0;
 			margin: 0;
 			font-size: 0;
-			/*cursor: none;*/
+			cursor: none;
 			
 		}
 
@@ -160,7 +160,7 @@
 			});
 
 		raster.scale(0.09);
-		
+
 		raster.onMouseMove = function(event) {
 		var path;
 		path = new Path();
@@ -270,63 +270,64 @@
 });
 
 	var allNotes = [];
-	var texts = [];
-	if (Cookies.getJSON('allNotes')) {
+	
+	if (Cookies.getJSON('savedNotes')) {
+		// should only be used to populate/repopulate the DOM if there is a cookie 
 
-			$(".notes").click(function(){
+		console.log(Cookies.getJSON('savedNotes'))
+
+		// for (var i = 0; i < savedNotes.length[i]; i++) {
+		// 	document.getElementById("wrapper").appendChild(savedNotes);
+		// }
+		
+		for (var i = 0; i < 3; i++) {
 			var thickLine = [50,60];
 			var highLine = [80,50];
-			var min = 800;
-			var max= 800;
-			var maxy = 800;
-			var miny = 800;
+			var min = 2;
+			var max= 500;
+			var maxy = 500;
+			var miny = 2;
 			var position= Math.floor(Math.random()* (max - min) +min); 
 			var x = Math.floor(Math.random()* (max - min) +min);
 			var y = Math.floor(Math.random()* (maxy - miny) +miny);
 
-		var element = document.createElement("div");
-		element.className = "shape";
-		element.style.top = 300 + "px";
-		element.style.left = 100 + "px";
-		element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "%";
-		element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "%";
-		document.getElementById("wrapper").appendChild(element);
+		}
+	
+
+		
+		$(".shape").resizable();
 		
 
-		// // console.log(wrapper.outerHTML);
-		// allNotes.outerHTML = allNotes;
-		$(".shape").draggable();
-		// $(element).resizable();
+		$(".shape").mouseenter(function(){
+			var button = $( "<div class='close'>x</div>" );
+			$(element).append(button);
 
-		$(element).mouseenter(function(){
-		var button = $( "<div class='close'>x</div>" );
-		$(element).append(button);
+			$(element).mouseleave(function(){
+				$(button).remove();
+			});
 
-		$(element).mouseleave(function(){
-			$(button).remove();
-		});
+			$(button).click(function(){
+				$(element).remove();
+			});
+		
 
-		$(button).click(function(){
-			$(element).remove();
-		});
-	});
+			$(".pink").click(function(){
+				$(".shape").css("background-color", "#ff0dbf");
 
-		$(".pink").click(function(){
-			$(element).css("background-color", "#ff0dbf");
+			});
+			$(".green").click(function(){
+				$(".shape").css("background-color", "#00FF00");
 
-		});
-		$(".green").click(function(){
-			$(element).css("background-color", "#00FF00");
+			});
+			$(".yellow").click(function(){
+				$(".shape").css("background-color", "#FCEF82");
 
-		});
-		$(".yellow").click(function(){
-			$(element).css("background-color", "#FCEF82");
-
+			});
 		});
 
 
 	$(function () {
-    $(element).dblclick(function (e) {
+    $(".shape").dblclick(function (e) {
         e.stopPropagation();
         var currentEle = $(e.target);
         var value = $(e.target).html();
@@ -341,7 +342,7 @@
         updateVal(currentEle, value);
     });
 });
-});
+
 		
 
 		function updateVal(currentEle, value) {
@@ -357,38 +358,93 @@
 		        }
 		    });
 
-		       };
+		};
 
 
 			console.log('there are cookies');
 			allNotes = Cookies.getJSON('allNotes');
 
 
-			for (var i = 0; i < allNotes.length; i++) {
+		// for (var i = 0; i < allNotes.length; i++) {
 
-			$(".shape").each(function(){
+		// 	$(".shape").each(function(){
+		// 		var positionLeft = $(this).css("left");
+		// 		var positionTop = $(this).css("top");
+		// 		var height = $(this).css("height");
+		// 		var width = $(this).css("width");
+		// 		var content = $(this).innerHTML();
+
+		// 		var shapeObject = {
+		// 			"positionLeft": positionLeft,
+		// 			"positionTop": positionTop,
+		// 			"height": height,
+		// 			"width": width,
+		// 			"content": content
+		// 		}
+
+		// 		allNotes.push(shapeObject);
+		// 		Cookies.set("savedNotes", allNotes,{expires:10});
+		// 	});
+		// };
+	};
+
+
+
+	// interactions: 
+	
+	$(".notes").click(function(){
+
+		var element = document.createElement("div");
+			element.className = "shape";
+			element.style.top = y + "px";
+			element.style.left = x + "px";
+			element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "%";
+			element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "%";
+		
+
+		document.getElementById("wrapper").appendChild(element);
+
+		$(".shape").draggable();
+		
+
+		allNotes = [];
+
+		$(".shape").each(function(){
+
 			var positionLeft = $(this).css("left");
 			var positionTop = $(this).css("top");
 			var height = $(this).css("height");
 			var width = $(this).css("width");
-			var content = $(this).innerHTML();
+			var content = $(this).text();
 
 			var shapeObject = {
-			"positionLeft": positionLeft,
-			"positionTop": positionTop,
-			"height": height,
-			"width": width,
-			"content": content
-		}
+				"positionLeft": positionLeft,
+				"positionTop": positionTop,
+				"height": height,
+				"width": width,
+				"content": content
+			}
 
-		allNotes.push(shapeObject);
-		Cookies.set("savedNotes", allNotes,{expires:10});
+			allNotes.push(shapeObject);
+			console.log("all notes: ", allNotes)
+			Cookies.set("savedNotes", allNotes, {expires:10});
+
+
+		});
+		
+
+
+		
 	});
-	};
-	};
 
 
 
+
+// you need to update the cookie when: 
+// - when you add a new sticky note
+// - when you change the location of a sticky note
+// - when you add text
+// - when you change color
 
   	
 	
