@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js apis</title>
+	<style type="text/css">
+		
+	.title{
+		text-align: center;
+		font-family: "avenir";
+		font-weight: lighter;
+		font-size: 1.7vw;
+		position: relative;
+		top: 0%;
+
+
+	}
+
+	.author {
+		text-align: center;
+		font-family: "avenir";
+		font-size: 1vw;
+		padding-top: 20vh;
+	}
+
+	.images{
+		width: 40%;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	#arena {
+		width: 70vw;
+		position: fixed;
+		top: 50%;
+		left: 10%;
+		transform: translate(0,-50%);
+	
+
+	}
+
+	#times {
+		width: 35vw;
+		position: fixed;
+		top: 50%;
+		right: 10%;
+		transform: translate(0, -50%);
+
+	}
+
+	</style>
+
+	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/jquery.query-yql.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+	    // //$.get requests:
+	    // 	// are.na
+	    $.get( "http://api.are.na/v2/channels/yasemin-thesis-one-18", function( data ) {
+	      
+
+	      var arenaContents = data.contents;
+
+	      console.log(arenaContents)
+
+	      for (var i = arenaContents.length - 1; i >0; i++) {
+	      	//arenaContents[i]
+
+	      	console.log(arenaContents[i])
+
+	      	if(arenaContents[i].image){
+	      		$("#arena").append(`
+
+	      			<img class="images" src="${arenaContents[i].image.original.url}">
+
+	      		`)
+
+	      	}else{
+	      		console.log("THIS IMAGE DOESNT EXIST")
+	      	}      
+	      }
+
+
+
+	    });
+
+	     var nyStatement = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml'"; // here you link the url you need
+
+	    $.queryYQL(nyStatement, "json", undefined, function (data) { //function taken from the query-yql library 
+
+	    	var nytArticles = data.query.results.item;
+
+	    	for (var i = 0; i < 1; i++) {
+	    		
+	    		console.log(nytArticles[i])	
+
+	    		$("#times").append(`
+
+	    				<h1 class="title">${nytArticles[i].title}</h1>
+	    				<h2 class="author">${nytArticles[i].creator}</h2>
+	    			
+
+    			`)
+	    	}
+
+	    })
+
+
+		})
+
+		
+
+
+
+	</script>
+
+</head>
+<body>
+	
+	<div id="times"></div>
+	<div id="craigs"></div>
+	<div id="arena"></div>
+	
+
+</body>
+</html>

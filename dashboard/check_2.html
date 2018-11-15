@@ -43,11 +43,17 @@
 
 		#wrapper {
 			position: relative;
-			width: 50vw;
-			height: 50vh;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			width: 94vw;	
+			padding-left: 6vw;
+   			padding-top: 8vh;
+			padding-bottom: 2vh;
+			
+			/*top: 50%;
+			left: 50%;*/
+			/*transform: translate(-50%, -50%);*/
+		}
+		.shape.off{
+			opacity:0;
 		}
 
 		#clock {
@@ -75,8 +81,9 @@
 			top: 2%;
 			display: inline-block;
 			cursor: pointer;
-			width: 100vh;
-
+			/*width: 100vh;*/
+			width: 2vw;
+			z-index: 10;
 		
 		}
 
@@ -84,9 +91,10 @@
 			width: 3px;
 			height: 100px;
 			background-color: #FCEF82;
-			position: absolute;
+			position: relative;
+			display: inline-block;
 			box-shadow: 3px 3px 15px #888888;
-			cursor: move;
+	
 		}
 
 			.close {
@@ -105,6 +113,7 @@
 			position: absolute;
 			top:10%;
 			left: 2%;
+			z-index: 10;
 		}
 
 		.pink, .green, .yellow {
@@ -146,9 +155,6 @@
 
 		}
 
-		.notes {
-			width: 2vw;
-		}
 
 		#paperjsCanvas{
 			position: fixed;
@@ -175,52 +181,12 @@
 	</style>
 		
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-	<script type="text/javascript" src="./assets/paper-full.min.js"></script>
 
-<!-- 
-	<script type="text/paperscript" canvas="paperjsCanvas" >
-		
-		var height = view.size.height;
-		var width = view.size.width;
-		
-		
-		
-		var raster = new Raster({
-    	source: 'assets/img/smiley.png',
-    	position: view.center,
-
-			});
-
-		raster.scale(0.09);
-
-		raster.onMouseMove = function(event) {
-		var path;
-		path = new Path();
-		path.add(event.point);
-    	this.position = event.point;
-    	//console.log(path);
-    	var delta = event.delta;
-    
-		if (delta.x < 1){
- 		raster.source="assets/img/sad.png"
- 		} else if(delta.x >= 2 && delta.x < 4){
-		raster.source="assets/img/smiley.png"
-		}else if(delta.x >= 5 && delta.x < 8){
-		raster.source="assets/img/tongue.png"
-		}else if(delta.x >= 9 && delta.x < 12){
-		raster.source="assets/img/heart.png"
-		}
-		console.log(delta);
- 		}
-
-
-	</script> -->
 
 
 </head>
 <body>
 
-	 <canvas id="paperjsCanvas" resize="true"></canvas>
 
 	 <div class="colors">
 	 	<div class="pink"></div>
@@ -342,15 +308,7 @@
   	//COOKIES
 
 	var allNotes = [];
-			var thickLine = [50,60];
-			var highLine = [80,50];
-			var min = 2;
-			var max= 500;
-			var maxy = 500;
-			var miny = 2;
-			var position= Math.floor(Math.random()* (max - min) +min); 
-			var x = Math.floor(Math.random()* (max - min) +min);
-			var y = Math.floor(Math.random()* (maxy - miny) +miny);
+			
 	
 	if (Cookies.getJSON('savedNotes')) {
 		// should only be used to populate/repopulate the DOM if there is a cookie 
@@ -366,44 +324,36 @@
 			var element = document.createElement("div");
 			element.className = "shape";
 
-			element.style.top = note.positionTop + 'px';
-			element.style.left = note.positionLeft + 'px';
+			// element.style.top = note.positionTop + 'px';
+			// element.style.left = note.positionLeft + 'px';
 			element.style.backgroundColor = currentColor;
 			element.style.width = note.width;
 			element.style.height = note.height;
-			
+			element.style.marginLeft = note.marginLeft;
+			element.style.marginTop = note.marginTop;
+
 			$(element).attr('id', 'shape-'+ i)
-			$(element).html('<div class="close">x</div><br><textarea class="type" cols="6" rows="8" type="text" value="' + "Text Here" +  '"/>');
+			if (!note.on) {
+				$(element).addClass('off')
+			}
+			//$(element).html('<div class="close">x</div><br><textarea class="type" cols="6" rows="8" type="text" value="' + "Text Here" +  '"/>');
+			 $(element).html('<div class="close">x</div><br><textarea class="type" cols="6" rows="8" type="text" value="' + "Text Here" +  '"/>');
+
 			$(element).find('.close').click(function(){
 				console.log('button clicked')
 				var index = $(element).attr('id').split('-')[1]
 				var savedNotes = Cookies.getJSON('savedNotes');
 				savedNotes[index].on = false;
 				Cookies.set('savedNotes', savedNotes, {expires: 10})
-				$(element).remove();
+				$(element).addClass('off');
 			});
-			 $(element).html('<textarea class="type" cols="6" rows="8" type="text" value="' + "Text Here" +  '"/>');
+
 			$(element).find('textarea').val(note.content);
 			console.log('hello')
 		
-			if(note.on){
+		
 				document.getElementById("wrapper").appendChild(element);
-			}
-
-			$(".shape").draggable({
-				stop: function() {
-		        	var currentNote = $(this);
-			    	console.log(currentNote)
-			    	var index = $(currentNote).attr('id') //shape-0
-
-			    	index = index.split('-')[1] //0
-			    	//update savedNote
-			    	savedNotes = Cookies.getJSON('savedNotes')
-			    	var noteToUpdate = savedNotes[index]
-			    	noteToUpdate['positionTop'] = $(this).position().top
-			    	noteToUpdate['positionLeft'] = $(this).position().left
-			    	Cookies.set("savedNotes", savedNotes, {expires:10});
-      			}});
+		
 		
 			
 		}
@@ -419,65 +369,100 @@
 	// get rid of sticky
 	$(".shape").find('.close').click(function(){
 		console.log('button clicked')
-		var index = $(this).attr('id').split('-')[1]
+		var index = $(this).closest('.shape').attr('id').split('-')[1]
 		var savedNotes = Cookies.getJSON('savedNotes');
 		savedNotes[index].on = false;
 		Cookies.set('savedNotes', savedNotes, {expires: 10})
-		$(this).remove();
+		$(this).addClass('off');;
 	});
 
 	// add sticky
 	$(".notes").click(function(){ 
 
+		$('.shape').remove()
+		Cookies.remove('savedNotes')
+		allNotes = [];
+
+		// $(".shape").each(function(){
+     
+		// 	// var positionLeft = $(this).css("left");
+		// 	// var positionTop = $(this).css("top");
+		// 	var height = $(this).css("height");
+		// 	var width = $(this).css("width");
+		// 	var marginLeft = $(this).css("margin-left");
+		// 	var marginTop = $(this).css("margin-top");
+		// 	var content = $(this).find('.type').text();
+
+		// 	var shapeObject = {
+		// 		"marginLeft": marginLeft,
+		// 		"marginTop": marginTop,
+		// 		"height": height,
+		// 		"width": width,
+		// 		"content": content,
+		// 		"on": true
+		// 	}
+
+		// 	allNotes.push(shapeObject);
+			
+		// 	$(element).attr('id', 'shape-'+ allNotes.indexOf(shapeObject))
+			
+		// 	console.log("all notes: ", allNotes)
+		
+
+
+		// });
+		for (var i = 0; i < 4; i++) {
+
+			var thickLine = [280,350];
+			var highLine = [280,350];
+			var min = 20;
+			var max= 40;
+			var maxy = 40;
+			var miny = 20;
+			var position= Math.floor(Math.random()* (max - min) +min); 
+			var x = Math.floor(Math.random()* (max - min) +min);
+			var y = Math.floor(Math.random()* (maxy - miny) +miny);
+
 			var element = document.createElement("div");
 			element.className = "shape";
-			element.style.top = y + "px";
-			element.style.left = x + "px";
-			element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "%";
-			element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "%";
+			element.style.marginTop = y + "px";
+			element.style.marginLeft = x + "px";
+			element.style.width = thickLine[Math.floor(Math.random()*thickLine.length)] + "px";
+			element.style.height = highLine[Math.floor(Math.random()*highLine.length)] + "px";
 			var button = $( "<div class='close'>x</div>" );
 			$(element).append(button);
-
-			// TRY updating the sticky's position to the cookie as soon as you've appended the sticky to the DOM
-
-			
 		    $(element).html('<div class="close">x</div><br><textarea class="type" cols="6" rows="8" type="text" value="' + "Text Here" +  '"/>');
-		
-		document.getElementById("wrapper").appendChild(element); // add the sticky 
+			
+		    document.getElementById("wrapper").appendChild(element); // add the sticky 
+		   
+			    	var shapeObject = {
+					"marginLeft": x + 'px',
+					"marginTop": y + 'px',
+					"height": element.style.height,
+					"width": element.style.width,
+					"content": '',
+					"on": true
+				}
 
-		//var indNote = $(element).attr('id', 'shape-');
+				allNotes.push(shapeObject);
+				$(element).attr('id', 'shape-'+ allNotes.indexOf(shapeObject))
+		}
 
-		var index = $(".shape").length - 1;
-		var indNote = $("#shape-" + index);
-
-		console.log(indNote)
-
-		// attr('id') will get the id of an element
-		// attr('id', 'value') will set the id of an element
-
-		// indNote.draggable()
-
-		// indNote.draggable({ // it might be worth targeting elements by their id rather than their class
-		// 		stop: function() {
-		//         	var currentNote = $(this);
-		// 	    	console.log(currentNote)
-		// 	    	var index = $(currentNote).attr('id') //shape-0
-
-		// 	    	index = index.split('-')[1] //0
-		// 	    	//update savedNote
-		// 	    	savedNotes = Cookies.getJSON('savedNotes')
-		// 	    	var noteToUpdate = savedNotes[index]
-		// 	    	noteToUpdate['positionTop'] = $(this).position().top
-		// 	    	noteToUpdate['positionLeft'] = $(this).position().left
-		// 	    	Cookies.set("savedNotes", savedNotes, {expires:10});
-  //     			}});
+		 	Cookies.set("savedNotes", allNotes, {expires:10});
+			 $('.close').click(function(){
+				console.log('button clicked')
+				var index = $(this).closest('.shape').attr('id').split('-')[1]
+				var savedNotes = Cookies.getJSON('savedNotes');
+				savedNotes[index].on = false;
+				Cookies.set('savedNotes', savedNotes, {expires: 10})
+				$(this).closest('.shape').addClass('off');
+			});
 
 		 $(".type").keyup(function (event) {
    	
 		    	var currentNote = $(this).closest('.shape');
 		    	console.log(currentNote, "------")
 		    	var index = $(currentNote).attr('id') //shape-0
-
 		    	index = index.split('-')[1] //0
 		    	//update savedNote
 		    	savedNotes = Cookies.getJSON('savedNotes')
@@ -487,55 +472,16 @@
 		    	Cookies.set("savedNotes", savedNotes, {expires:10});
 
 		        if (event.keyCode == 13) {
-		            // $(this).parent().html($(this).val());
-
-
-		            // $(this).val($('.type').val() + "\n");
+		  
 		        }
 		   });
 
-		allNotes = [];
 
-		$(".shape").each(function(){
-
-			var positionLeft = $(this).css("left");
-			var positionTop = $(this).css("top");
-			var height = $(this).css("height");
-			var width = $(this).css("width");
-			var content = $(this).text();
-
-			var shapeObject = {
-				"positionLeft": positionLeft,
-				"positionTop": positionTop,
-				"height": height,
-				"width": width,
-				"content": content,
-				"on": true
-			}
-
-			allNotes.push(shapeObject);
-			$(element).attr('id', 'shape-'+ allNotes.indexOf(shapeObject))
-			console.log("all notes: ", allNotes)
-			Cookies.set("savedNotes", allNotes, {expires:10});
-
-
-		});
 
 		
 	$(function () {
 	    $(".shape").dblclick(function (e) {
-	        // e.stopPropagation();
-	        // var currentEle = $(e.target);
-	        // var value = $(e.target).html();
-
-	        // console.log($(e.target));
-
-	        // if ($.trim(value) === "") {
-	        //     $(currentEle).data('mode', 'add');
-	        // } else {
-	        //     $(currentEle).data('mode', 'edit');
-	        // }
-	        // updateVal(currentEle, value);
+	       
 	    });
 	});
 
@@ -544,7 +490,14 @@
 });
 
 
-
+$('.close').click(function(){
+				console.log('button clicked')
+				var index = $(this).closest('.shape').attr('id').split('-')[1]
+				var savedNotes = Cookies.getJSON('savedNotes');
+				savedNotes[index].on = false;
+				Cookies.set('savedNotes', savedNotes, {expires: 10})
+				$(this).closest('.shape').addClass('off');
+			});
 
 
 
