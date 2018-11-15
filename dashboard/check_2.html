@@ -73,8 +73,9 @@
 			right: 2%;
 		}
 		.notes {
-			font-size: 3vh;
+			font-size: 2vh;
 			font-family: sans-serif;
+			font-style: italic;
 			color: black;
 			position: fixed;
 			left: 2%;
@@ -85,6 +86,10 @@
 			width: 2vw;
 			z-index: 10;
 		
+		}
+		.notes:hover {
+		
+			text-decoration: underline;
 		}
 
 		.shape {
@@ -111,7 +116,7 @@
 
 		.colors {
 			position: absolute;
-			top:10%;
+			bottom:2%;
 			left: 2%;
 			z-index: 10;
 		}
@@ -123,19 +128,19 @@
 			left: 0;
 			height: 2vh;
   			width: 2vh;
-  			border-radius: 50%;
   			margin-bottom: 1vh;
   			cursor: pointer;
+  			background-color: black;
  			
 		}
 
-		.pink {
+		.pink:hover {
 			background-color: #ff0dbf;
 		}
-		.yellow{
+		.yellow:hover{
 			background-color:  #FCEF82;
 		} 
-		.green {
+		.green:hover {
 			background-color: #00FF00 ;
 		}
 
@@ -195,7 +200,7 @@
 	 </div>
 	<div id="wrapper">
 	</div>
-	<div class="notes">+</div>
+	<div class="notes">new</div>
 	<div id="clock"></div>
 	<div id="calender"></div>
 	<div id="arena"></div>
