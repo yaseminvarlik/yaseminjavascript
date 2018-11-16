@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>js apis</title>
+	<title>Connections</title>
 	<style type="text/css">
 		
-	.title{
+/*	.title{
 		text-align: center;
 		font-family: "avenir";
 		font-weight: lighter;
@@ -13,40 +13,85 @@
 		top: 0%;
 
 
-	}
+	}*/
 
+	#wrapper {
+		height: 100vh;
+
+	}
+	.description {
+		
+		font-family: "times";
+		font-weight: lighter;
+		font-size: 1vw;
+		position: relative;
+		width: 30vw;
+		font-style: italic;
+		
+	}
 	.author {
 		text-align: center;
-		font-family: "avenir";
+		font-family: "times";
 		font-size: 1vw;
-		padding-top: 20vh;
+		padding-top: 10vh;
+
 	}
 
-	.images{
-		width: 40%;
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	#arena {
-		width: 70vw;
+		#arena {
+		/*width: 70vw;*/
 		position: fixed;
 		top: 50%;
-		left: 10%;
-		transform: translate(0,-50%);
+		left: 50%;
+		transform: translate(-50%,-50%);
 	
+
+	}
+	.images{
+		width: 20vw;
+		/*display: inline-block;*/
+		/*vertical-align: top;*/
+		position: relative;
+		/*top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);*/
 
 	}
 
 	#times {
-		width: 35vw;
+		width: 95vw;
 		position: fixed;
-		top: 50%;
-		right: 10%;
-		transform: translate(0, -50%);
+		bottom: 2%;
+		left: 2%;
+		border-top: 1px solid black;
 
 	}
 
+	.italic  {
+		font-family: "times";
+		font-size: 1vw;
+		font-style: oblique;
+	}
+
+	.mark {
+		font-family: "times";
+		font-size: 1vw;
+		vertical-align: top;
+	}
+	.regular {
+		font-style:normal;
+	}
+
+	.suggestion_wrap {
+		width: 15vw;
+		position: absolute;
+		bottom: 2%;
+		right: 2%;
+	}
+	.suggestions {
+		height: 5vh;
+		position: relative;
+		display: inline;
+	}
 	</style>
 
 	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
@@ -57,57 +102,80 @@
 
 	    // //$.get requests:
 	    // 	// are.na
-	    $.get( "http://api.are.na/v2/channels/yasemin-thesis-one-18", function( data ) {
+	    $.get( "http://api.are.na/v2/channels/graphic-and-print", function( data ) {
 	      
-
+	      var min = 0;
+	      var max = 25;
+	      var r = Math.floor(Math.random()*(max - min) + min);
 	      var arenaContents = data.contents;
+	      
+	      console.log(arenaContents[r].image);
+	      $("#arena").append(`
 
-	      console.log(arenaContents)
+	      			<p class="mark">*</p>
+	      			<img class="images" src="${arenaContents[r].image.original.url}">
+	      		`);
+	  
 
-	      for (var i = arenaContents.length - 1; i >0; i++) {
-	      	//arenaContents[i]
+	      			document.title= arenaContents[r].image.original.file_size;
 
-	      	console.log(arenaContents[i])
+	      	});
 
-	      	if(arenaContents[i].image){
-	      		$("#arena").append(`
+	    $.get( "http://api.are.na/v2/channels/degree-project-76bhfj7t2ng", function( data ) {
+		var arenaSuggestions = data.contents;
+		console.log(arenaSuggestions);
+	      	
+	      	for (var l = 0; l < 2; l++) {
 
-	      			<img class="images" src="${arenaContents[i].image.original.url}">
+	      		var minl = 0;
+	      		var maxl = 25;
+	      		var al = Math.floor(Math.random()*(maxl - minl) + minl);
+	      		
 
-	      		`)
+	      	if(arenaSuggestions[al].image){
+	      		
+	      		$(".suggestion_wrap").append(`
+
+	      			<a href="#"><img class="suggestions" src="${arenaSuggestions[al].image.original.url}"><a/>
+	      		`);
+	      		
 
 	      	}else{
 	      		console.log("THIS IMAGE DOESNT EXIST")
 	      	}      
-	      }
+	      
+	  }
 
+			});
 
-
-	    });
+	    
 
 	     var nyStatement = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml'"; // here you link the url you need
 
 	    $.queryYQL(nyStatement, "json", undefined, function (data) { //function taken from the query-yql library 
-
+	    	var minn = 0;
+	      	var maxn = data.query.results.item.length;
+	      	var a = Math.floor(Math.random()*(maxn - minn) + minn);
 	    	var nytArticles = data.query.results.item;
 
-	    	for (var i = 0; i < 1; i++) {
+	    	// for (var i = 0; i < 1; i++) {
 	    		
-	    		console.log(nytArticles[i])	
+	    		console.log(nytArticles)	
 
 	    		$("#times").append(`
 
-	    				<h1 class="title">${nytArticles[i].title}</h1>
-	    				<h2 class="author">${nytArticles[i].creator}</h2>
+	    				
+	    				<h1 class="description"><span>*</span> <span class="regular">${nytArticles[a].description[1]}</span><br>${nytArticles[a].pubDate}</br></h1>
+	    				
 	    			
-
     			`)
-	    	}
+	    		
+	    	})
 
 	    })
 
 
-		})
+		// })
 
 		
 
@@ -117,10 +185,13 @@
 
 </head>
 <body>
-	
+	<div id="wrapper">
+	</div>
 	<div id="times"></div>
-	<div id="craigs"></div>
 	<div id="arena"></div>
+	<div id="footnotes">
+		<div class="suggestion_wrap"></div>
+	</div>
 	
 
 </body>
