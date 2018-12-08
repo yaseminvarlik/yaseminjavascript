@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
 	<title>Connections</title>
 	<style type="text/css">
@@ -15,128 +16,260 @@
 
 	}*/
 
+/*@media only screen and (max-width: 800px) {
+    
+    .regular h1 {width: 100%;}
+   */
+  	
+  
+
+  	#hidden-book{
+  		display: none;
+  	}
+
+
 	#wrapper {
-		height: 100vh;
+		height: 100%;
+		width: 100%;
 
-	}
-	.description {
-		
-		font-family: "times";
-		font-weight: lighter;
-		font-size: 1vw;
-		position: relative;
-		width: 30vw;
-		font-style: italic;
-		
-	}
-	.author {
-		text-align: center;
-		font-family: "times";
-		font-size: 1vw;
-		padding-top: 10vh;
-
-	}
-
-		#arena {
-		/*width: 70vw;*/
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-	
-
-	}
-	.images{
-		width: 20vw;
-		/*display: inline-block;*/
-		/*vertical-align: top;*/
-		position: relative;
-		/*top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);*/
 
 	}
 
 	#times {
-		width: 95vw;
-		position: fixed;
-		bottom: 2%;
+		width: 96%;
+		height: 3%;
+		position: relative;
+		bottom: 10%;
 		left: 2%;
 		border-top: 1px solid black;
 
+
 	}
+
+	
+	.description {
+		
+		font-family: "times";
+		font-weight: lighter;
+		font-size: 15px;
+		width: 40vw;
+		font-style: italic;
+		
+	}
+	
+	.author {
+		text-align: center;
+		font-family: "times";
+		font-size: 15px;
+		
+
+	}
+
+
+
+		#arena {
+		width: 100vw;
+		height: 80vh;
+		display: flex;
+		justify-content: center;
+
+	}
+
+	.images{
+		width: auto;
+		height: 400px;
+		justify-content: center;
+		align-items: center;
+		padding-top: 100px;
+		
+
+			}
+	
 
 	.italic  {
 		font-family: "times";
-		font-size: 1vw;
+		font-size: 15px;
 		font-style: oblique;
+		
 	}
 
 	.mark {
 		font-family: "times";
-		font-size: 1vw;
-		vertical-align: top;
+		font-size: 15px;
+		padding-top: 100px;
+		
 	}
 	.regular {
-		font-style:normal;
+		font-style: normal;
 	}
 
-	.suggestion_wrap {
-		width: 15vw;
+	.ebook {
+		font-size: 15px;
+		font-weight: normal;
+		text-decoration: underline;
+		color: blue;
+		cursor: pointer;
+		padding-top: 10px;
+		font-style: normal;
+
+	}
+
+	.more {
+		width: 300px;
+		text-align: right;
 		position: absolute;
-		bottom: 2%;
-		right: 2%;
+		right: 1vw;
+
 	}
-	.suggestions {
-		height: 5vh;
-		position: relative;
-		display: inline;
+	.suggestions{
+		height: 60px;
+		display: inline-block;
+
 	}
+
+
+	/* book styles: */
+
+	.book-image{
+  		width: 2in;
+  		height: auto;
+  		padding-top: 1.8in;
+  		padding-left: 1.2in;
+  		/*position: relative;*/
+  	}
+
+  	.text-article{
+  		width: 2in;
+  		padding-top: 2.2in;
+  		padding-left: 1.2in;
+  		font-family: "times";
+  		font-size: 10pt;
+
+  	}
+
+  	.book_title{
+  		text-align: center;
+  		padding-top: 2.2in;
+  		font-size: 25pt;
+  		font-family: "times";
+  		font-weight: normal;
+
+  	}
+
+  	.author {
+  		font-family: "times";
+  		font-weight: normal;
+  		font-size: 10pt;
+  		padding-top: 2.5in;
+  	}
+
+ /* 	.testing-content{
+  		width: 2in;
+  		text-align: right;
+  		padding: 0.5in;
+  	}
+
+  	.testing-content > h3{
+  		color: red;
+  	}
+	*/
 	</style>
+
 
 	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="assets/jquery.query-yql.min.js"></script>
 
+	
+	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 
+		
+
 	    // //$.get requests:
 	    // 	// are.na
+	    var image;
+	    var imageOne;
+	    var imageTwo;
+
 	    $.get( "https://api.are.na/v2/channels/graphic-and-print", function( data ) {
 	      
 	      var min = 0;
 	      var max = 25;
 	      var r = Math.floor(Math.random()*(max - min) + min);
 	      var arenaContents = data.contents;
-	      
-	      console.log(arenaContents[r].image);
-	      $("#arena").append(`
+	      imageOne = arenaContents[r].image.original.url
+	      // console.log(arenaContents[r].image);
+	      // $("#arena").append(`
 
-	      			<p class="mark">*</p>
-	      			<img class="images" src="${arenaContents[r].image.original.url}">
-	      		`);
+	      // 			<p class="mark">*</p>
+	      // 			<img class="images" src="${arenaContents[r].image.original.url}">
+	      // 		`);
 	  
 
 	      			document.title= arenaContents[r].image.original.file_size;
 
 	      	});
 
-	    $.get( "https://api.are.na/v2/channels/degree-project-76bhfj7t2ng", function( data ) {
+	     $.get( "https://api.are.na/v2/channels/yasemin-thesis-one-18", function( data ) {
+	      
+	      var miny = 0;
+	      var maxy = 25;
+	      var y = Math.floor(Math.random()*(maxy - miny) + miny);
+	      var arenaImage = data.contents;
+	      imageTwo = arenaImage[y].image.original.url 
+
+	    
+	      var randomImage = Math.floor(Math.random()*(maxy - miny) + miny);
+	      console.log(randomImage)
+
+	      if(randomImage > 10) {
+	      	image = imageOne
+	      } else {
+	      	image = imageTwo
+	      }
+	   
+	      $("#arena").append(`
+
+	      			<p class="mark">*</p>
+	      			<img class="images" src="${image}">
+	      		`);
+
+	      $("#hidden-book").append(`
+      			<img class="images book-image" src="${image}">
+	      	`)
+	  
+
+	      		
+
+	      	});
+
+
+	    $.get( "https://api.are.na/v2/channels/memes-politics", function( data ) {
 		var arenaSuggestions = data.contents;
 		console.log(arenaSuggestions);
+
+
 	      	
 	      	for (var l = 0; l < 2; l++) {
 
-	      		var minl = 0;
-	      		var maxl = 25;
-	      		var al = Math.floor(Math.random()*(maxl - minl) + minl);
-	      		
+	      	var minl = 0;
+	      	var maxl = 25;
+	      	var al = Math.floor(Math.random()*(maxl - minl) + minl);
+	      	var arenaSuggestions = data.contents;
+
+	      	// var randomImage = al;
+	      	// if(randomImage > 20) {
+	      	// image = imageOne
+	      	// 	} else {
+	      	// image = imageTwo
+	      	// }
 
 	      	if(arenaSuggestions[al].image){
 	      		
-	      		$(".suggestion_wrap").append(`
-
-	      			<a href="#"><img class="suggestions" src="${arenaSuggestions[al].image.original.url}"><a/>
+	      		$(".more").append(`
+	      			<img class="suggestions" src="${arenaSuggestions[al].image.original.url}">
 	      		`);
 	      		
 
@@ -144,11 +277,12 @@
 	      		console.log("THIS IMAGE DOESNT EXIST")
 	      	}      
 	      
-	  }
+	  		}
 
 			});
 
 	    
+	    var articles = "";
 
 	     var nyStatement = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml'"; // here you link the url you need
 
@@ -157,41 +291,156 @@
 	      	var maxn = data.query.results.item.length;
 	      	var a = Math.floor(Math.random()*(maxn - minn) + minn);
 	    	var nytArticles = data.query.results.item;
+	    	articles = nytArticles[a].description[1]
+	    	// for (var i = 0; i < 1; i++) {
+	    		 // console.log(articles);
+	    		console.log(nytArticles[a].description);
 
+	    		// $("#times").append(`
+
+	    				
+	    		// 		<h1 class="description"><span>*</span> <span class="regular">${nytArticles[a].description[1]}</span><br>${nytArticles[a].pubDate}</br></h1>
+	    		// 		<a class="link" href=""><h2 class="ebook">Read Full Article</h2></a>
+	    				
+	    			
+    			// `)
+	    		
+	    	}).then(function(){
+
+	     var nyTechnology = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml'"; // here you link the url you need
+
+	    $.queryYQL(nyTechnology, "json", undefined, function (data) { //function taken from the query-yql library 
+	    	var mintech = 0;
+	      	var maxtech = data.query.results.item.length;
+	      	var b = Math.floor(Math.random()*(maxtech - mintech) + mintech);
+	    	var nytTecharticle = data.query.results.item;
+	    	articles =  articles + nytTecharticle[b].description[1]
 	    	// for (var i = 0; i < 1; i++) {
 	    		
-	    		console.log(nytArticles)	
+	    		
 
 	    		$("#times").append(`
 
 	    				
-	    				<h1 class="description"><span>*</span> <span class="regular">${nytArticles[a].description[1]}</span><br>${nytArticles[a].pubDate}</br></h1>
-	    				
+	    				<h1 class="description"><span>*</span> <span class="regular">${nytTecharticle[b].description[1]} </span><br>${nytTecharticle[b].pubDate}</br></h1>
 	    			
     			`)
+
+	    		$("#hidden-book").append(`
+	      			<p class="text-article">${articles}</p>
+		      	`)
+
+    			
 	    		
-	    	})
+	    	});
 
-	    })
+			});
+
+	  
+	       });
+	 
+
+	</script>
+
+	<script src="https://unpkg.com/bindery"></script>
+	<script type="text/javascript">
 
 
-		// })
+		$(document).ready(function(){
 
+		$('.ebook').one("click", function(){
+
+			$("#hidden-book").css({"display" : "block",})
+			
+
+		Bindery.makeBook({
+	  		content: "#hidden-book",
+	  		view: Bindery.View.PREVIEW,
+
+
+
+  		pageSetup: {
+    		size: { width: '4in', height: '6in' },
+    		margin: { top: '20pt', inner: '30pt', outer: '16pt', bottom: '20pt' },
+    		
+  			},
+
+  		rules: [
+    		// Bindery.PageBreak({ selector: 'h1', position: 'before', continue: 'right' }),
+    		Bindery.FullBleedPage({ selector: '.all_titles', continue: '' }),
+    		Bindery.FullBleedPage({ selector: 'img', continue: '' }),
+    		Bindery.FullBleedPage({ selector: 'p', continue: '' }),
+    		// Bindery.FullBleedPage({ selector: '.testing-content', continue: '' }),
+    		Bindery.RunningHeader({
+  			render: (page) => page.isLeft
+    		? `${page.number}    ${page.heading.h1}`
+    		: `${page.heading.h2}    ${page.number}`
+				}),
+    		
+    
+ 		 ],
+ 	
+
+  		
+
+  		// printSetup: {
+  		// 	layout: Bindery.Layout.BOOKLET,
+  		// 	// paper: Bindery.Paper.AUTO_BLEED
+  		// 	 },
 		
+    	
 
+    	
+  		
+		});
+
+		console.log(Bindery.makeBook);
+
+
+});
+
+});
 
 
 	</script>
 
+
+	
+
 </head>
 <body>
 	<div id="wrapper">
-	</div>
-	<div id="times"></div>
+
 	<div id="arena"></div>
-	<div id="footnotes">
-		<div class="suggestion_wrap"></div>
+	<div id="times">
+
+		<div class="description">
+			<div class="ebook">Read Full Article</div>
+		</div>
+
+		<div class="more"></div>
+		
 	</div>
+	</div>
+	<div id="hidden-book">
+		<div class="all_titles">
+		<h1 class="book_title">All True</h1>
+		<h2 class="author" class="book_title">Yasemin Varlik</h2>
+		</div>
+
+		<!-- <div class="testing-content">
+			<h3>first </h3>
+			<h3>second </h3>
+		</div> -->
+		
+	</div>
+	
+	<!-- <div id="content">
+		
+		contents of the book goes here
+	</div> -->
+	</div>
+	
 	
 
 </body>
