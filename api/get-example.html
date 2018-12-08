@@ -54,6 +54,7 @@
 		font-size: 15px;
 		width: 40vw;
 		font-style: italic;
+		padding-top: 10px;
 		
 	}
 	
@@ -162,6 +163,31 @@
   		font-size: 10pt;
   		padding-top: 2.5in;
   	}
+
+  	.📖-footer {
+  		font-size: 8pt;
+  	}
+
+  	.📖-footnote {
+  	font-size: 8pt;
+		}
+
+	.copyright h3{
+		width: 3in;
+  		text-align: left;
+  		padding: 0.5in;
+  		padding-top: 5in;
+  		font-size: 8pt;
+  		font-weight: normal;
+  		line-height: 14px;
+	}
+
+	.second-title h4{
+		text-align: center;
+		font-weight: normal;
+		padding-top: 2.2in;
+		font-size: 15pt;
+	}
 
  /* 	.testing-content{
   		width: 2in;
@@ -365,9 +391,17 @@
     		
   			},
 
+  		 printSetup: {
+    		layout: Bindery.Layout.PAGES,
+    		paper: Bindery.Paper.AUTO,
+    		marks: Bindery.Marks.NONE,
+  			},
+
   		rules: [
     		// Bindery.PageBreak({ selector: 'h1', position: 'before', continue: 'right' }),
     		Bindery.FullBleedPage({ selector: '.all_titles', continue: '' }),
+    		Bindery.FullBleedPage({ selector: '.copyright', continue: '' }),
+    		Bindery.FullBleedPage({ selector: '.second-title', continue: '' }),
     		Bindery.FullBleedPage({ selector: 'img', continue: '' }),
     		Bindery.FullBleedPage({ selector: 'p', continue: '' }),
     		// Bindery.FullBleedPage({ selector: '.testing-content', continue: '' }),
@@ -376,7 +410,29 @@
     		? `${page.number}    ${page.heading.h1}`
     		: `${page.heading.h2}    ${page.number}`
 				}),
-    		
+
+    	
+
+    		Bindery.Footnote({
+    		selector: 'p',
+    		render: (element, number) => {
+
+              let href = element.getAttribute('href');
+              if (!href) {
+                href = 'Haberman, Charlie Savage and Maggie, Peter Baker, Adam Goldman and Sharon LaFraniere, and Mark Landler. "Politics." The New York Times.';
+                console.log(element);
+              }
+              return '<i>' + number + '</i>: ' + href;
+              
+            },
+
+ 			// selector: 'p',
+  		// 	render: (url, number) => {
+    // 		return '<i>' + number + '</i>: Link to ' + 'http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml'.href;
+  		// 		}
+			}),
+
+			
     
  		 ],
  	
@@ -426,6 +482,13 @@
 		<div class="all_titles">
 		<h1 class="book_title">All True</h1>
 		<h2 class="author" class="book_title">Yasemin Varlik</h2>
+		</div>
+		<div class="copyright">
+			<h3>Copyright © 2018 by Yasemin Varlik<br>All Rights Reserved.</br>Book design by Yasemin Varlik<br>Typeface used is Times.</br></h3>
+		</div>
+		<div class="second-title">
+			<h4>All True</h4>
+		
 		</div>
 
 		<!-- <div class="testing-content">
