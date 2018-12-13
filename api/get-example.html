@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/png" href="./assets/img/favicon_2.png"/>
 <head>
 	<title>Connections</title>
 	<style type="text/css">
@@ -130,6 +131,15 @@
 
 
 	/* book styles: */
+	
+	.text-article{
+  		width: 2in;
+  		padding-top: 2.2in;
+  		padding-left: 1.2in;
+  		font-family: "times";
+  		font-size: 10pt;
+
+  	}
 
 	.book-image{
   		width: 2in;
@@ -139,14 +149,7 @@
   		/*position: relative;*/
   	}
 
-  	.text-article{
-  		width: 2in;
-  		padding-top: 2.2in;
-  		padding-left: 1.2in;
-  		font-family: "times";
-  		font-size: 10pt;
 
-  	}
 
   	.book_title{
   		text-align: center;
@@ -179,6 +182,7 @@
   		padding-top: 5in;
   		font-size: 8pt;
   		font-weight: normal;
+  		font-family: "times";
   		line-height: 14px;
 	}
 
@@ -187,7 +191,10 @@
 		font-weight: normal;
 		padding-top: 2.2in;
 		font-size: 15pt;
+		font-family: "times";
 	}
+
+
 
  /* 	.testing-content{
   		width: 2in;
@@ -354,6 +361,8 @@
 
 	    		$("#hidden-book").append(`
 	      			<p class="text-article">${articles}</p>
+					
+					
 		      	`)
 
     			
@@ -402,8 +411,14 @@
     		Bindery.FullBleedPage({ selector: '.all_titles', continue: '' }),
     		Bindery.FullBleedPage({ selector: '.copyright', continue: '' }),
     		Bindery.FullBleedPage({ selector: '.second-title', continue: '' }),
-    		Bindery.FullBleedPage({ selector: 'img', continue: '' }),
     		Bindery.FullBleedPage({ selector: 'p', continue: '' }),
+    		Bindery.FullBleedPage({ selector: 'img', continue: '' }),
+
+    		
+
+    		
+    	
+    		
     		// Bindery.FullBleedPage({ selector: '.testing-content', continue: '' }),
     		Bindery.RunningHeader({
   			render: (page) => page.isLeft
@@ -488,8 +503,8 @@
 		</div>
 		<div class="second-title">
 			<h4>All True</h4>
-		
 		</div>
+		
 
 		<!-- <div class="testing-content">
 			<h3>first </h3>
