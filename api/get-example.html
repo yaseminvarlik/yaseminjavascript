@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" type="image/png" href="./assets/img/favicon_2.png"/>
 <head>
-	<title>Mismatch</title>
+	<title>Today's Mismatch</title>
 	<style type="text/css">
 		
 /*	.title{
@@ -21,7 +21,8 @@
     
     .regular h1 {width: 100%;}
    */
-  	
+
+  
   
 
   	#hidden-book{
@@ -68,7 +69,6 @@
 	}
 
 
-
 		#arena {
 		width: 100vw;
 		height: 80vh;
@@ -77,9 +77,11 @@
 
 	}
 
+
+
 	.images{
 		width: auto;
-		height: 400px;
+		height: 50%;
 		justify-content: center;
 		align-items: center;
 		padding-top: 100px;
@@ -113,6 +115,7 @@
 		cursor: pointer;
 		padding-top: 10px;
 		font-style: normal;
+		padding-left: 2%;
 
 	}
 
@@ -121,14 +124,22 @@
 		text-align: right;
 		position: absolute;
 		right: 1vw;
+		padding-top: 2%;
 
 	}
 	.suggestions{
 		height: 60px;
 		display: inline-block;
+		transition: transform .2s;
 
 	}
+	.suggestions:hover {
+ 	 transform: scale(3);
+ 	
+ 	/* padding-right: 5px;
+ 	 padding-bottom: 5px;*/
 
+	}
 
 	/* book styles: */
 	
@@ -186,6 +197,20 @@
   		line-height: 14px;
 	}
 
+		.print-setup {
+		width: 3in;
+  		text-align: left;
+  		padding-top: 3in;
+		font-size: 8pt;
+  		font-weight: normal;
+  		font-family: "times";
+  		line-height: 14px;
+  		cursor: pointer;
+  		text-decoration: underline;
+		color: blue;
+
+	}
+
 	.second-title h4{
 		text-align: center;
 		font-weight: normal;
@@ -212,7 +237,7 @@
 	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="assets/jquery.query-yql.min.js"></script>
 
-	
+	<script src="https://unpkg.com/bindery"></script>
 	
 
 	<script type="text/javascript">
@@ -356,7 +381,7 @@
 
 	    				
 	    				<h1 class="description"><span>*</span> <span class="regular">${nytTecharticle[b].description[1]} </span><br>${nytTecharticle[b].pubDate}</br></h1>
-	    			
+
     			`)
 
 	    		$("#hidden-book").append(`
@@ -364,29 +389,20 @@
 					
 					
 		      	`)
-
-    			
 	    		
 	    	});
 
-			});
 
-	  
-	       });
-	 
-
-	</script>
-
-	<script src="https://unpkg.com/bindery"></script>
-	<script type="text/javascript">
+			}).then(function(){
 
 
-		$(document).ready(function(){
+				//put your click function and bindery stuff in here
+			$(".ebook").one("click", function(){
 
-		$('.ebook').one("click", function(){
+
 
 			$("#hidden-book").css({"display" : "block",})
-			
+			window.scrollTo(0, 800);
 
 		Bindery.makeBook({
 	  		content: "#hidden-book",
@@ -437,7 +453,7 @@
                 href = 'Haberman, Charlie Savage and Maggie, Peter Baker, Adam Goldman and Sharon LaFraniere, and Mark Landler. "Politics." The New York Times.';
                 console.log(element);
               }
-              return '<i>' + number + '</i>: ' + href;
+              return '<i>' + number + '</i>: ' + href ;
               
             },
 
@@ -464,17 +480,30 @@
     	
   		
 		});
+		
 
 		console.log(Bindery.makeBook);
+		// $(".copyright.print-setup").click(function(){
+		// 	console.log("hello")
+		// window.print();
+		// });
+
+			});
+			 
+
+			});
 
 
-});
+	  
+	       });
+		// $( document ).ready(function() {
 
-});
-
+		// // 
+		// // 		});
+		// });
+	 
 
 	</script>
-
 
 	
 
@@ -483,15 +512,16 @@
 	<div id="wrapper">
 
 	<div id="arena"></div>
+
 	<div id="times">
 
-		<div class="description">
-			<div class="ebook">Read Full Article</div>
-		</div>
-
+		
+	<!-- 	<div class="description"></div> -->
 		<div class="more"></div>
 		
 	</div>
+		<div class="ebook">Read More</div>
+		
 	</div>
 	<div id="hidden-book">
 		<div class="all_titles">
@@ -499,11 +529,12 @@
 		<h2 class="author" class="book_title">Yasemin Varlik</h2>
 		</div>
 		<div class="copyright">
-			<h3>Copyright © 2018 by Yasemin Varlik<br>All Rights Reserved.</br>Book design by Yasemin Varlik<br>Typeface used is Times.</br></h3>
+			<h3>Copyright © 2018 by Yasemin Varlik<br>All Rights Reserved.</br>Book design by Yasemin Varlik<br>Typeface used is Times.</br></h3>	
 		</div>
 		<div class="second-title">
 			<h4>Mismatch</h4>
 		</div>
+
 		
 
 		<!-- <div class="testing-content">
@@ -512,6 +543,8 @@
 		</div> -->
 		
 	</div>
+
+	<!-- <div class="print-setup">Print Book</div> -->
 	
 	<!-- <div id="content">
 		
