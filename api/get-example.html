@@ -22,9 +22,6 @@
     .regular h1 {width: 100%;}
    */
 
-  
-  
-
   	#hidden-book{
   		display: none;
   	}
@@ -46,6 +43,7 @@
 		border-top: 1px solid black;
 
 
+
 	}
 
 	
@@ -53,7 +51,7 @@
 		
 		font-family: "times";
 		font-weight: lighter;
-		font-size: 15px;
+		font-size: 18px;
 		width: 40vw;
 		font-style: italic;
 		padding-top: 10px;
@@ -63,7 +61,7 @@
 	.author {
 		text-align: center;
 		font-family: "times";
-		font-size: 15px;
+		font-size: 18px;
 		
 
 	}
@@ -81,7 +79,7 @@
 
 	.images{
 		width: auto;
-		height: 50%;
+		height: 60%;
 		justify-content: center;
 		align-items: center;
 		padding-top: 100px;
@@ -92,8 +90,9 @@
 
 	.italic  {
 		font-family: "times";
-		font-size: 15px;
+		font-size: 18px;
 		font-style: oblique;
+		font-weight: normal;
 		
 	}
 
@@ -108,14 +107,15 @@
 	}
 
 	.ebook {
-		font-size: 15px;
+		font-size: 18px;
 		font-weight: normal;
-		text-decoration: underline;
-		color: blue;
+		/*text-decoration: underline;*/
+		color: gray;
 		cursor: pointer;
 		padding-top: 10px;
 		font-style: normal;
 		padding-left: 2%;
+		display: inline;
 
 	}
 
@@ -363,7 +363,7 @@
 	    			
     			// `)
 	    		
-	    	}).then(function(){
+	    	});
 
 	     var nyTechnology = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml'"; // here you link the url you need
 
@@ -380,7 +380,10 @@
 	    		$("#times").append(`
 
 	    				
-	    				<h1 class="description"><span>*</span> <span class="regular">${nytTecharticle[b].description[1]} </span><br>${nytTecharticle[b].pubDate}</br></h1>
+	    				<h1 class="description"><span>*</span><span class="regular">${nytTecharticle[b].description[1]}..<span class="ebook">more</span>
+	    				</span>
+
+	    				<h1 class="italic">${nytTecharticle[b].pubDate}</h1>
 
     			`)
 
@@ -390,7 +393,7 @@
 					
 		      	`)
 	    		
-	    	});
+	    	
 
 
 			}).then(function(){
@@ -520,7 +523,7 @@
 		<div class="more"></div>
 		
 	</div>
-		<div class="ebook">Read More</div>
+	<!-- 	<div class="ebook">more</div> -->
 		
 	</div>
 	<div id="hidden-book">
